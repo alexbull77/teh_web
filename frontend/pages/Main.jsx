@@ -21,7 +21,7 @@ const theme = createTheme({
     },
 });
 
-const Main = () => {
+const Main = ({ posts }) => {
     return (
         <>
             <AppBarCustom />
@@ -34,7 +34,7 @@ const Main = () => {
                     minWidth: 300,
                 }}
             >
-                <GridCustom />
+                <GridCustom posts={posts} />
             </Box>
         </>
     );

@@ -6,22 +6,22 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-export default function PostCardCustom() {
+export default function PostCardCustom({ title, short_description, images }) {
+    const [first_image, second_image, third_image] = images;
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 sx={{ height: 140 }}
-                image='/static/images/cards/contemplative-reptile.jpg'
-                title='green iguana'
+                image={first_image.url}
+                title={first_image.alt_name}
             />
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
-                    Lizard
+                    {title}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
+                    {short_description}
                 </Typography>
             </CardContent>
             <CardActions>
