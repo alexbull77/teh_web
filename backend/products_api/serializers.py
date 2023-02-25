@@ -15,8 +15,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    images = ImageSerializer(many=True)
-    categories = CategorySerializer(many=True)
+    images = ImageSerializer(many=False)
+    categories = CategorySerializer(many=False)
 
     class Meta:
         model = ProductModel

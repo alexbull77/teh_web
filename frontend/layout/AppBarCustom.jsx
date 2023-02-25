@@ -12,11 +12,35 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+// const pages = ["Blog", "Products", "Pricing"];
+
+// const pages = [
+//     {
+//         name: "Blog",
+//         url,
+//     },
+// ];
+
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function AppBarCustom() {
+function AppBarCustom({ homepage_link, products_link }) {
+    const pages = [
+        {
+            name: "Blog",
+            link: "/",
+        },
+        {
+            name: "Products",
+            link: "products",
+        },
+        {
+            name: "Pricing",
+            link: "",
+        },
+    ];
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -57,7 +81,7 @@ function AppBarCustom() {
                             textDecoration: "none",
                         }}
                     >
-                        LOGO
+                        Drink Tea With Us!
                     </Typography>
 
                     <Box
@@ -96,11 +120,13 @@ function AppBarCustom() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    key={page}
+                                    component={Link}
+                                    to={page.link}
+                                    key={page.name}
                                     onClick={handleCloseNavMenu}
                                 >
                                     <Typography textAlign='center'>
-                                        {page}
+                                        {page.name}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -125,7 +151,7 @@ function AppBarCustom() {
                             textDecoration: "none",
                         }}
                     >
-                        LOGO
+                        Drink Tea With Us!
                     </Typography>
                     <Box
                         sx={{
@@ -135,11 +161,13 @@ function AppBarCustom() {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.name}
+                                component={Link}
+                                to={page.link}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: "white", display: "block" }}
                             >
-                                {page}
+                                {page.name}
                             </Button>
                         ))}
                     </Box>

@@ -1,6 +1,5 @@
 import { Box, createTheme } from "@mui/system";
 import React from "react";
-import AppBarCustom from "../layout/AppBarCustom";
 import GridCustom from "../layout/GridCustom";
 
 const theme = createTheme({
@@ -24,7 +23,6 @@ const theme = createTheme({
 const Main = ({ posts }) => {
     return (
         <>
-            <AppBarCustom />
             <Box
                 sx={{
                     bgcolor: "background.paper",
