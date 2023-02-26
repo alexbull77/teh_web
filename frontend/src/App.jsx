@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppBarCustom from "../layout/AppBarCustom";
-import Main from "../pages/Main";
+import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
+import PostDetail from "../pages/PostDetail";
+import Posts from "../pages/Posts";
+import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
 import "./App.css";
-
-// const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <Main posts={posts} />,
-//     },
-//     {
-//         path: "products",
-//         element:
-//     }
-// ])
 
 function App() {
     const [posts, setPosts] = useState([]);
@@ -33,19 +25,37 @@ function App() {
             .then((res) => setProducts(res));
     }, []);
 
+    console.log(">>App.jsx -- Posts --", posts);
+    console.log(">>App.jsx -- Products --", products);
+
     return (
         <div className='App'>
             <Router>
-                <AppBarCustom homepage_link='/' products_link='/products' />
+                <AppBarCustom />
                 <Routes>
                     <Route
                         path='/'
-                        element={<Main posts={posts} />}
+                        element={<Home />}
+                        errorElement={<NotFound />}
+                    />
+                    <Route
+                        path='/posts'
+                        element={<Posts posts={posts} />}
                         errorElement={<NotFound />}
                     />
                     <Route
                         path='/products'
                         element={<Products products={products} />}
+                        errorElement={<NotFound />}
+                    />
+                    <Route
+                        path='/posts/:postId'
+                        element={<PostDetail posts={posts} />}
+                        errorElement={<NotFound />}
+                    />
+                    <Route
+                        path='/products/:productId'
+                        element={<ProductDetail products={products} />}
                         errorElement={<NotFound />}
                     />
                 </Routes>

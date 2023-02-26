@@ -5,8 +5,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductCardCustom({
+    id,
     title,
     description,
     image,
@@ -35,8 +37,9 @@ export default function ProductCardCustom({
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small'>Share</Button>
-                <Button size='small'>Learn More</Button>
+                <Button size='small' component={Link} to={`/products/${id}`}>
+                    Learn More
+                </Button>
             </CardActions>
         </Card>
     );

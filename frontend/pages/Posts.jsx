@@ -20,7 +20,8 @@ const theme = createTheme({
     },
 });
 
-const Main = ({ posts }) => {
+const Posts = ({ posts }) => {
+    console.log(">>Posts.jsx", posts);
     return (
         <>
             <Box
@@ -38,4 +39,4 @@ const Main = ({ posts }) => {
     );
 };
 
-export default Main;
+export default Posts;

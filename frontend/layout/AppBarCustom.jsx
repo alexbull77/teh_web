@@ -14,26 +14,17 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-// const pages = ["Blog", "Products", "Pricing"];
-
-// const pages = [
-//     {
-//         name: "Blog",
-//         url,
-//     },
-// ];
-
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function AppBarCustom({ homepage_link, products_link }) {
+function AppBarCustom() {
     const pages = [
         {
             name: "Blog",
-            link: "/",
+            link: "/posts",
         },
         {
             name: "Products",
-            link: "products",
+            link: "/products",
         },
         {
             name: "Pricing",
@@ -180,7 +171,7 @@ function AppBarCustom({ homepage_link, products_link }) {
                             >
                                 <Avatar
                                     alt='Remy Sharp'
-                                    src='/static/images/avatar/2.jpg'
+                                    src='https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'
                                 />
                             </IconButton>
                         </Tooltip>
