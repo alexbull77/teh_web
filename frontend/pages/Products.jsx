@@ -4,7 +4,7 @@ import React from "react";
 import ProductCardCustom from "../layout/ProductCardCustom";
 
 const Products = ({ products }) => {
-    console.log(">>Products.jsx", products);
+    // console.log(">>Products.jsx", products);
     return (
         <Box
             sx={{
@@ -20,10 +20,9 @@ const Products = ({ products }) => {
                     <div>No products available</div>
                 ) : (
                     products.map((product) => (
-                        <Grid item xs={12} md={6} lg={3}>
+                        <Grid item xs={12} md={6} lg={3} key={product.id}>
                             <ProductCardCustom
                                 id={product.id}
-                                key={product.id}
                                 title={product.title}
                                 description={product.description}
                                 image={product.images}

@@ -8,9 +8,8 @@ const GridCustom = ({ posts }) => {
                 <div>No posts available</div>
             ) : (
                 posts.map((post) => (
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid item xs={12} md={6} lg={3} key={post.id}>
                         <PostCardCustom
-                            key={post.id}
                             id={post.id}
                             title={post.title}
                             short_description={post.short_description}
