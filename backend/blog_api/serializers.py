@@ -1,17 +1,23 @@
 from rest_framework import serializers
-from .models import PostModel, ImageModel
+from .models import PostModel, ImageModel, TagModel
 
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImageModel
-        fields = ('alt_name', 'url')
+        fields = '__all__'
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TagModel
+        fields = '__all__'
 
 
 class PostSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = PostModel
-        fields = ('id', 'title', 'short_description',
-                  'body', 'images')
+        fields = '__all__'
