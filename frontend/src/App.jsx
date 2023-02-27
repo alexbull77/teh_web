@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppBarCustom from "../layout/AppBarCustom";
@@ -14,15 +15,22 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/posts/")
-            .then((res) => res.json())
-            .then((res) => setPosts(res));
+        // fetch("http://127.0.0.1:8000/api/posts/")
+        //     .then((res) => res.json())
+        //     .then((res) => setPosts(res));
+        axios
+            .get("http://127.0.0.1:8000/api/posts/")
+            .then((res) => res.data)
+            .then((res) => setPosts(res))
+            .catch((err) => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/products/")
-            .then((res) => res.json())
-            .then((res) => setProducts(res));
+        axios
+            .get("http://127.0.0.1:8000/api/products/")
+            .then((res) => res.data)
+            .then((res) => setProducts(res))
+            .catch((err) => console.log(err));
     }, []);
 
     console.log(">>App.jsx -- Posts --", posts);

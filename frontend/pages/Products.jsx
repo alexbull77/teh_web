@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import React from "react";
 import ProductCardCustom from "../layout/ProductCardCustom";
@@ -17,7 +18,9 @@ const Products = ({ products }) => {
         >
             <Grid container my={6} rowSpacing={5} columnSpacing={5}>
                 {!products ? (
-                    <div>No products available</div>
+                    <Typography>
+                        <h1>No Products Here!</h1>
+                    </Typography>
                 ) : (
                     products.map((product) => (
                         <Grid item xs={12} md={6} lg={3} key={product.id}>

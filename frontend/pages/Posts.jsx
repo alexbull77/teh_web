@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import GridCustom from "../layout/GridCustom";
@@ -14,7 +15,11 @@ const Posts = ({ posts }) => {
                 minWidth: 300,
             }}
         >
-            <GridCustom posts={posts} />
+            {!posts ? (
+                <Typography>No Posts Here!</Typography>
+            ) : (
+                <GridCustom posts={posts} />
+            )}
         </Box>
     );
 };

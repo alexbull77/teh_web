@@ -98,7 +98,12 @@ const PostDetail = ({ posts }) => {
                                     })}
                                 </Carousel> */}
 
-                                <Carousel>
+                                <Carousel
+                                    showArrows={false}
+                                    stopOnHover={true}
+                                    autoPlay={true}
+                                    showStatus={false}
+                                >
                                     {post.images?.map((image) => {
                                         return (
                                             <div key={image.id}>
