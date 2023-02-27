@@ -3,6 +3,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.10",
-    "react-material-ui-carousel": "^3.4.2"
+    "react-material-ui-carousel": "^3.4.2",
+    "react-responsive-carousel": "^3.2.23"
   }
 }

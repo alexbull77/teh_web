@@ -15,9 +15,9 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
 
 const theme = createTheme({
@@ -72,7 +72,7 @@ const PostDetail = ({ posts }) => {
                                     {post.short_description}
                                 </Typography>
 
-                                <Carousel
+                                {/* <Carousel
                                     sx={{
                                         height: 300,
                                         paddingTop: "56.25%",
@@ -92,18 +92,22 @@ const PostDetail = ({ posts }) => {
                                             src={image.url}
                                         />;
 
-                                        // <CardMedia
-                                        //     key={image.id}
-                                        //     component='picture'
-                                        //     image={image.url}
-                                        //     src={image.url}
-                                        //     sx={{
-                                        //         height: 300,
-                                        //         paddingTop: "56.25%",
-                                        //     }}
-                                        // />;
+                                        
 
                                         // <Item key={i} item={item} />;
+                                    })}
+                                </Carousel> */}
+
+                                <Carousel>
+                                    {post.images?.map((image) => {
+                                        return (
+                                            <div key={image.id}>
+                                                <img src={image.url} />
+                                                {/* <p className='legend'>
+                                                    Legend 1
+                                                </p> */}
+                                            </div>
+                                        );
                                     })}
                                 </Carousel>
 
