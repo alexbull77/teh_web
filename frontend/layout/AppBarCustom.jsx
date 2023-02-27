@@ -14,24 +14,35 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// const settings = ["Profile", "SignIn"];
+
+const settings = [
+    {
+        name: "Profile",
+        link: "",
+    },
+    {
+        name: "SignIn",
+        link: "/signin",
+    },
+];
+
+const pages = [
+    {
+        name: "Blog",
+        link: "/posts",
+    },
+    {
+        name: "Products",
+        link: "/products",
+    },
+    {
+        name: "Pricing",
+        link: "",
+    },
+];
 
 function AppBarCustom() {
-    const pages = [
-        {
-            name: "Blog",
-            link: "/posts",
-        },
-        {
-            name: "Products",
-            link: "/products",
-        },
-        {
-            name: "Pricing",
-            link: "",
-        },
-    ];
-
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -194,11 +205,13 @@ function AppBarCustom() {
                         >
                             {settings.map((setting) => (
                                 <MenuItem
-                                    key={setting}
+                                    component={Link}
+                                    to={setting.link}
+                                    key={setting.name}
                                     onClick={handleCloseUserMenu}
                                 >
                                     <Typography textAlign='center'>
-                                        {setting}
+                                        {setting.name}
                                     </Typography>
                                 </MenuItem>
                             ))}

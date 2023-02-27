@@ -8,6 +8,8 @@ import PostDetail from "../pages/PostDetail";
 import Posts from "../pages/Posts";
 import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
 import "./App.css";
 
 function App() {
@@ -15,9 +17,6 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // fetch("http://127.0.0.1:8000/api/posts/")
-        //     .then((res) => res.json())
-        //     .then((res) => setPosts(res));
         axios
             .get("http://127.0.0.1:8000/api/posts/")
             .then((res) => res.data)
@@ -54,6 +53,16 @@ function App() {
                     <Route
                         path='/products'
                         element={<Products products={products} />}
+                        errorElement={<NotFound />}
+                    />
+                    <Route
+                        path='/signup'
+                        element={<SignUp />}
+                        errorElement={<NotFound />}
+                    />
+                    <Route
+                        path='/signin'
+                        element={<SignIn />}
                         errorElement={<NotFound />}
                     />
                     <Route
