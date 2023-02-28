@@ -14,10 +14,18 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('name', )
 
 
-class PostSerializer(serializers.ModelSerializer):
+class ProductDetailSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=False)
     categories = CategorySerializer(many=False)
 
     class Meta:
         model = ProductModel
         fields = '__all__'
+
+
+class ProductListSerializer(serializers.ModelSerializer):
+    images = ImageSerializer(many=False)
+
+    class Meta:
+        model = ProductModel
+        fields = ('id', 'title', 'images', 'price', 'quantity')
