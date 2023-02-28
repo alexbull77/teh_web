@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class TagModel(models.Model):
@@ -18,10 +19,21 @@ class ImageModel(models.Model):
 
 
 class PostModel(models.Model):
+
+    class PostObjects(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status='published')
+
+    options = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='post')
+    published = models.DateTimeField(default=timezone.now)
     short_description = models.TextField(max_length=400,
                                          null=True,
                                          blank=True)
@@ -30,6 +42,14 @@ class PostModel(models.Model):
                                   related_name='post')
     images = models.ManyToManyField(ImageModel,
                                     related_name='post')
+    status = models.CharField(
+        max_length=10, choices=options, default='published'
+    )
+    objects = models.Manager()
+    postobjects = PostObjects()
+
+    class Meta:
+        ordering = ('-published',)
 
     def __str__(self) -> str:
         return self.title
