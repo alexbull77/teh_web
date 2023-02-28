@@ -67,12 +67,12 @@ function App() {
                     />
                     <Route
                         path='/posts/:postId'
-                        element={<PostDetail posts={posts} />}
+                        element={<PostDetail />}
                         errorElement={<NotFound />}
                     />
                     <Route
                         path='/products/:productId'
-                        element={<ProductDetail products={products} />}
+                        element={<ProductDetail />}
                         errorElement={<NotFound />}
                     />
                 </Routes>

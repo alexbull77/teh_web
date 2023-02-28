@@ -1,12 +1,15 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const ProductDetail = ({ products }) => {
+const ProductDetail = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        setProduct(products.find((product) => product.id == productId));
+        axios
+            .get(`http://127.0.0.1:8000/api/products/${productId}`)
+            .then((res) => setProduct(res.data));
     }, []);
 
     console.log(productId);

@@ -1,20 +1,10 @@
-// import React from "react";
-
-// const PostDetail = () => {
-//     return (
-//         <div>
-//             <h1>Post Detail</h1>
-//         </div>
-//     );
-// };
-
-// export default PostDetail;
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -32,16 +22,16 @@ const theme = createTheme({
     },
 });
 
-const PostDetail = ({ posts }) => {
+const PostDetail = () => {
     const { postId } = useParams();
     const [post, setPost] = useState({});
 
     useEffect(() => {
-        setPost(posts.find((post) => post.id == postId));
+        axios
+            .get(`http://127.0.0.1:8000/api/posts/${postId}`)
+            .then((res) => setPost(res.data));
+        // console.log("Post Detail>> ", post);
     }, []);
-
-    // const [first_image_obj, second_image_obj, third_image_obj] = post.images;
-    console.log(post);
 
     return (
         <div>
