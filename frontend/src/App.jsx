@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Footer from "../components/Footer";
 import AppBarCustom from "../layout/AppBarCustom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
@@ -76,6 +77,10 @@ function App() {
                         errorElement={<NotFound />}
                     />
                 </Routes>
+                <Footer
+                    title='Refresh your day with our premium teas'
+                    description='Experience the finest selection of premium teas from around the world. Our carefully curated collection will delight your senses and invigorate your day. Try our teas today and discover a world of flavor and relaxation.'
+                />
             </Router>
         </div>
     );
