@@ -1,8 +1,8 @@
 import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Box } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";

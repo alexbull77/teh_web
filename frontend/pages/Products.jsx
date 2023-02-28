@@ -1,6 +1,5 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
 import React from "react";
 import ProductCardCustom from "../layout/ProductCardCustom";
 
