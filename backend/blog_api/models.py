@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class TagModel(models.Model):
@@ -32,6 +33,7 @@ class PostModel(models.Model):
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='post')
+    published = models.DateTimeField(default=timezone.now)
     short_description = models.TextField(max_length=400,
                                          null=True,
                                          blank=True)
@@ -45,6 +47,9 @@ class PostModel(models.Model):
     )
     objects = models.Manager()
     postobjects = PostObjects()
+
+    class Meta:
+        ordering = ('-published',)
 
     def __str__(self) -> str:
         return self.title
