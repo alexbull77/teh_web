@@ -18,6 +18,16 @@ class ImageModel(models.Model):
 
 
 class PostModel(models.Model):
+
+    class PostObjects(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status='published')
+
+    options = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
@@ -30,6 +40,11 @@ class PostModel(models.Model):
                                   related_name='post')
     images = models.ManyToManyField(ImageModel,
                                     related_name='post')
+    status = models.CharField(
+        max_length=10, choices=options, default='published'
+    )
+    objects = models.Manager()
+    postobjects = PostObjects()
 
     def __str__(self) -> str:
         return self.title
