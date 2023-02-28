@@ -21,7 +21,7 @@ class TagSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostDetailSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
     tags = TagSerializer(many=True)
     author = UserSerializer(many=False)
@@ -29,3 +29,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostModel
         fields = '__all__'
+
+
+class PostListSerializer(serializers.ModelSerializer):
+    images = ImageSerializer(many=True)
+
+    class Meta:
+        model = PostModel
+        fields = ('id', 'title', 'body', 'images')

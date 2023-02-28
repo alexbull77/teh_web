@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from blog_api.views import PostView
 from products_api.views import ProductView
+from blog_api.views import PostView
 
 
 router = routers.DefaultRouter()
-router.register(r'posts', PostView, 'post')
-router.register(r'products', ProductView, 'product')
+router.register(r'posts', PostView, 'post-list')
+router.register(r'products', ProductView, 'product-list')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # path('api2/', include('blog_api.urls')),
 ]
