@@ -35,10 +35,11 @@ const PostDetail = () => {
 
     return (
         <div>
-            {post ? (
-                // <div>
-                //     <h1>Post is here</h1>
-                // </div>
+            {!post ? (
+                <div>
+                    <h1>Post is not here</h1>
+                </div>
+            ) : (
                 <ThemeProvider theme={theme}>
                     <div style={{ flexGrow: 1, padding: theme.spacing(3) }}>
                         <Grid container spacing={3}>
@@ -62,32 +63,6 @@ const PostDetail = () => {
                                     {post.short_description}
                                 </Typography>
 
-                                {/* <Carousel
-                                    sx={{
-                                        height: 300,
-                                        paddingTop: "56.25%",
-                                    }}
-                                >
-                                    {post.images?.map((image) => {
-                                        <Box
-                                            key={image.id}
-                                            component='img'
-                                            sx={{
-                                                height: 233,
-                                                width: 350,
-                                                maxHeight: { xs: 233, md: 167 },
-                                                maxWidth: { xs: 350, md: 250 },
-                                            }}
-                                            alt={image.alt_name}
-                                            src={image.url}
-                                        />;
-
-                                        
-
-                                        // <Item key={i} item={item} />;
-                                    })}
-                                </Carousel> */}
-
                                 <Carousel
                                     showArrows={false}
                                     stopOnHover={true}
@@ -98,9 +73,6 @@ const PostDetail = () => {
                                         return (
                                             <div key={image.id}>
                                                 <img src={image.url} />
-                                                {/* <p className='legend'>
-                                                    Legend 1
-                                                </p> */}
                                             </div>
                                         );
                                     })}
@@ -136,8 +108,6 @@ const PostDetail = () => {
                         </Grid>
                     </div>
                 </ThemeProvider>
-            ) : (
-                <div>Post is not here</div>
             )}
         </div>
     );

@@ -14,8 +14,6 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-// const settings = ["Profile", "SignIn"];
-
 const settings = [
     {
         name: "Profile",
@@ -142,7 +140,6 @@ function AppBarCustom() {
                         noWrap
                         component={Link}
                         to='/'
-                        // href='/'
                         sx={{
                             mr: 2,
                             display: { xs: "flex", md: "none" },

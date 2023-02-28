@@ -12,9 +12,6 @@ const ProductDetail = () => {
             .then((res) => setProduct(res.data));
     }, []);
 
-    console.log(productId);
-    console.log(product);
-    // const thisProduct = products.find((prod) => prod.id == productId);
     return (
         <div>
             {product ? (

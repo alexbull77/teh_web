@@ -4,7 +4,6 @@ import React from "react";
 import ProductCardCustom from "../layout/ProductCardCustom";
 
 const Products = ({ products }) => {
-    // console.log(">>Products.jsx", products);
     return (
         <Box
             sx={{
@@ -16,7 +15,7 @@ const Products = ({ products }) => {
             }}
         >
             <Grid container my={6} rowSpacing={5} columnSpacing={5}>
-                {!products ? (
+                {!products || products.length === 0 ? (
                     <Typography>
                         <h1>No Products Here!</h1>
                     </Typography>

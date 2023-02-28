@@ -3,7 +3,7 @@ import React from "react";
 import GridCustom from "../layout/GridCustom";
 
 const Posts = ({ posts }) => {
-    console.log(">>Posts", posts);
+    // console.log(">>Posts", posts);
     return (
         <Box
             sx={{
@@ -14,7 +14,7 @@ const Posts = ({ posts }) => {
                 minWidth: 300,
             }}
         >
-            {!posts ? (
+            {!posts || posts.length === 0 ? (
                 <Typography>No Posts Here!</Typography>
             ) : (
                 <GridCustom posts={posts} />

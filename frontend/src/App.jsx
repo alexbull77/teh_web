@@ -29,9 +29,6 @@ function App() {
             });
     }, []);
 
-    console.log(">>App.jsx -- Posts --", posts);
-    console.log(">>App.jsx -- Products --", products);
-
     return (
         <div className='App'>
             <Router>
