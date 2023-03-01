@@ -3,3 +3,4 @@ django==3.2.18
 djangorestframework
 django-cors-headers
 autopep8
+djangorestframework-simplejwt

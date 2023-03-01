@@ -14,6 +14,14 @@ import SignUp from "../pages/SignUp";
 import "./App.css";
 
 function App() {
+    const [isAuth, setIsAuth] = useState(false);
+
+    useEffect(() => {
+        if (localStorage.getItem("access_token") !== null) {
+            setIsAuth(true);
+        }
+    }, [isAuth]);
+
     const [posts, setPosts] = useState([]);
     const [products, setProducts] = useState([]);
 
@@ -32,7 +40,7 @@ function App() {
     return (
         <div className='App'>
             <Router>
-                <AppBarCustom />
+                <AppBarCustom isAuth={isAuth} />
                 <Routes>
                     <Route
                         path='/'

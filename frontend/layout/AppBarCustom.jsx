@@ -14,17 +14,6 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-const settings = [
-    {
-        name: "Profile",
-        link: "",
-    },
-    {
-        name: "SignIn",
-        link: "/signin",
-    },
-];
-
 const pages = [
     {
         name: "Blog",
@@ -40,7 +29,25 @@ const pages = [
     },
 ];
 
-function AppBarCustom() {
+function AppBarCustom({ isAuth }) {
+    const settings = isAuth
+        ? [
+              {
+                  name: "Profile",
+                  link: "",
+              },
+              {
+                  name: "Logout",
+                  link: "",
+              },
+          ]
+        : [
+              {
+                  name: "SignIn",
+                  link: "signin",
+              },
+          ];
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
