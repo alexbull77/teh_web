@@ -81,9 +81,9 @@ function AppBarCustom({ isAuth }) {
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
-                            fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".3rem",
+                            fontFamily: "Lato",
+                            fontWeight: 500,
+                            letterSpacing: ".2rem",
                             color: "inherit",
                             textDecoration: "none",
                         }}

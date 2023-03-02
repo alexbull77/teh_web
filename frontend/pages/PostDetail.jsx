@@ -1,29 +1,16 @@
-import { createTheme, ThemeProvider } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
+import React, {useEffect, useState} from "react";
+import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useParams } from "react-router-dom";
-
-const theme = createTheme({
-    spacing: 3,
-    paper: {
-        padding: 3,
-        marginBottom: 3,
-    },
-    chip: {
-        marginRight: 1,
-        marginBottom: 1,
-    },
-});
+import {useParams} from "react-router-dom";
 
 const PostDetail = () => {
-    const { postId } = useParams();
+    const {postId} = useParams();
     const [post, setPost] = useState({});
 
     useEffect(() => {
@@ -34,82 +21,79 @@ const PostDetail = () => {
     }, []);
 
     return (
-        <div>
+        <>
             {!post ? (
                 <div>
                     <h1>Post is not here</h1>
                 </div>
             ) : (
-                <ThemeProvider theme={theme}>
-                    <div style={{ flexGrow: 1, padding: theme.spacing(3) }}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12} md={8}>
-                                <Typography
-                                    variant='h3'
-                                    component='h1'
-                                    gutterBottom
-                                >
-                                    {post.title}
-                                </Typography>
-                                <Typography variant='subtitle1' gutterBottom>
-                                    By {post.author?.username}
-                                </Typography>
-                                <Divider />
-                                <Typography
-                                    variant='body1'
-                                    gutterBottom
-                                    style={{ marginTop: "1rem" }}
-                                >
-                                    {post.short_description}
-                                </Typography>
+                <div style={{flexGrow: 1}}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={8}>
+                            <Typography
+                                variant='h3'
+                                component='h1'
+                                gutterBottom
+                            >
+                                {post.title}
+                            </Typography>
+                            <Typography variant='subtitle1' gutterBottom>
+                                By {post.author?.username}
+                            </Typography>
+                            <Divider/>
+                            <Typography
+                                variant='body1'
+                                gutterBottom
+                                style={{marginTop: "1rem"}}
+                            >
+                                {post.short_description}
+                            </Typography>
 
-                                <Carousel
-                                    showArrows={false}
-                                    stopOnHover={true}
-                                    autoPlay={true}
-                                    showStatus={false}
-                                >
-                                    {post.images?.map((image) => {
-                                        return (
-                                            <div key={image.id}>
-                                                <img src={image.url} />
-                                            </div>
-                                        );
-                                    })}
-                                </Carousel>
+                            <Carousel
+                                showArrows={false}
+                                stopOnHover={true}
+                                autoPlay={true}
+                                showStatus={false}
+                            >
+                                {post.images?.map((image) => {
+                                    return (
+                                        <div key={image.id}>
+                                            <img src={image.url} alt={image.alt_name}/>
+                                        </div>
+                                    );
+                                })}
+                            </Carousel>
 
-                                <Divider
-                                    style={{
-                                        marginTop: "1rem",
-                                        marginBottom: "1rem",
-                                    }}
-                                />
-                                <Typography variant='body1' gutterBottom>
-                                    {post.body}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                                <Paper sx={theme.paper}>
-                                    <Typography
-                                        variant='subtitle1'
-                                        gutterBottom
-                                    >
-                                        Tags
-                                    </Typography>
-                                    {post.tags?.map((tag) => (
-                                        <Chip
-                                            key={tag.id}
-                                            label={tag.name}
-                                            sx={theme.chip}
-                                        />
-                                    ))}
-                                </Paper>
-                            </Grid>
+                            <Divider
+                                style={{
+                                    marginTop: "1rem",
+                                    marginBottom: "1rem",
+                                }}
+                            />
+                            <Typography variant='body1' gutterBottom>
+                                {post.body}
+                            </Typography>
                         </Grid>
-                    </div>
-                </ThemeProvider>
+                        <Grid item xs={12} md={4}>
+                            <Paper>
+                                <Typography
+                                    variant='subtitle1'
+                                    gutterBottom
+                                >
+                                    Tags
+                                </Typography>
+                                {post.tags?.map((tag) => (
+                                    <Chip
+                                        key={tag.id}
+                                        label={tag.name}
+                                    />
+                                ))}
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </div>
             )}
-        </div>
+    </>
     );
 };
 

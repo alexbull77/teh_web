@@ -1,6 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Box } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
@@ -31,8 +30,6 @@ function Copyright(props) {
     );
 }
 
-const theme = createTheme();
-
 export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -44,7 +41,6 @@ export default function SignIn() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
             <Container component='main' maxWidth='xs'>
                 <CssBaseline />
                 <Box
@@ -117,6 +113,5 @@ export default function SignIn() {
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
-        </ThemeProvider>
     );
 }
