@@ -14,11 +14,21 @@ const Products = ({ products }) => {
                 minWidth: 300,
             }}
         >
-            <Grid container my={6} rowSpacing={5} columnSpacing={5}>
+            <Grid container my={6} rowSpacing={5} columnSpacing={5} alignItems="center" justifyContent="center">
                 {!products || products.length === 0 ? (
-                    <Typography>
-                        <h1>No Products Here!</h1>
-                    </Typography>
+                    < Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{
+                        width: 1,
+                        m: 5,
+                    }}>
+                        <Typography>
+                            <h1>No Products Here!</h1>
+                        </Typography>
+                    </Box>
+
                 ) : (
                     products.map((product) => (
                         <Grid item xs={12} md={6} lg={3} key={product.id}>

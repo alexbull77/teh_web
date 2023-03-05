@@ -14,6 +14,7 @@ import SignUp from "../pages/SignUp";
 import {CssBaseline} from "@mui/material";
 import "./App.css"
 import {createTheme, ThemeProvider} from "@mui/material/";
+import axiosInstance from "./axios.js";
 
 const theme = createTheme({
     palette: {
@@ -41,7 +42,10 @@ const theme = createTheme({
 });
 
 function App() {
+
     const [isAuth, setIsAuth] = useState(false);
+
+    console.log(isAuth)
 
     useEffect(() => {
         if (localStorage.getItem("access_token") !== null) {
@@ -69,7 +73,7 @@ function App() {
             <div className='App'>
                 <CssBaseline />
                 <Router>
-                    <AppBarCustom isAuth={isAuth} />
+                    <AppBarCustom isAuth={isAuth} setIsAuth={setIsAuth} />
                     <Routes>
                         <Route
                             path='/'
@@ -93,7 +97,7 @@ function App() {
                         />
                         <Route
                             path='/signin'
-                            element={<SignIn />}
+                            element={<SignIn isAuth={isAuth} setIsAuth={setIsAuth} />}
                             errorElement={<NotFound />}
                         />
                         <Route

@@ -12,7 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axiosInstance from "../src/axios.js";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import Dialog from "@mui/material/Dialog";
 
 const pages = [
     {
@@ -29,15 +33,16 @@ const pages = [
     },
 ];
 
-function AppBarCustom({ isAuth }) {
+function AppBarCustom({ isAuth, setIsAuth }) {
+
+    console.log(isAuth)
+
+    const navigate = useNavigate()
+
     const settings = isAuth
         ? [
               {
                   name: "Profile",
-                  link: "",
-              },
-              {
-                  name: "Logout",
                   link: "",
               },
           ]
@@ -50,6 +55,15 @@ function AppBarCustom({ isAuth }) {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -65,6 +79,19 @@ function AppBarCustom({ isAuth }) {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        const response = axiosInstance.post('user/logout/blacklist/', {
+            refresh_token: localStorage.getItem('refresh_token'),
+        });
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        axiosInstance.defaults.headers['Authorization'] = null;
+        handleClose();
+        handleCloseUserMenu();
+        setIsAuth(false);
+        navigate('/signin');
+    }
 
     return (
         <AppBar position='static'>
@@ -218,7 +245,35 @@ function AppBarCustom({ isAuth }) {
                                         {setting.name}
                                     </Typography>
                                 </MenuItem>
+
                             ))}
+                            {
+                                isAuth && (
+                                    <MenuItem
+                                        onClick={handleClickOpen}
+                                    >
+                                        <Typography textAlign='center'>
+                                            Logout
+                                        </Typography>
+                                        <Dialog
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description"
+                                        >
+                                            <DialogTitle id="alert-dialog-title">
+                                                {"Are you sure you want to logout?"}
+                                            </DialogTitle>
+                                            <DialogActions>
+                                                <Button onClick={handleClose} autoFocus>Back</Button>
+                                                <Button onClick={handleLogout}>
+                                                    Logout
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </MenuItem>
+                                )
+                            }
                         </Menu>
                     </Box>
                 </Toolbar>

@@ -2,15 +2,16 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import axiosInstance from "../src/axios.js";
 
 function Copyright(props) {
     return (
@@ -30,14 +31,41 @@ function Copyright(props) {
     );
 }
 
-export default function SignIn() {
+export default function SignIn({ isAuth, setIsAuth }) {
+    const navigate = useNavigate()
+    // freezing the obj so it cannot be changed
+    const initialFormData = Object.freeze({
+        email: '',
+        password: '',
+    });
+
+    const [formData, updateFormData] = useState(initialFormData);
+
+    const handleChange = (event) => {
+        updateFormData({
+            ...formData,
+            // Trimming any whitespace
+            [event.target.name]: event.target.value.trim(),
+        });
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
+        console.log(formData)
+
+        axiosInstance
+            .post('token/', {
+                email: formData.email,
+                password: formData.password,
+            })
+            .then((res => {
+                localStorage.setItem('access_token', res.data.access);
+                localStorage.setItem('refresh_token', res.data.refresh);
+                axiosInstance.defaults.headers['Authorization'] =
+                    'JWT ' + localStorage.getItem('access_token');
+                setIsAuth(true);
+                navigate('/');
+            }))
     };
 
     return (
@@ -72,6 +100,7 @@ export default function SignIn() {
                             name='email'
                             autoComplete='email'
                             autoFocus
+                            onChange={handleChange}
                         />
                         <TextField
                             margin='normal'
@@ -82,13 +111,14 @@ export default function SignIn() {
                             type='password'
                             id='password'
                             autoComplete='current-password'
+                            onChange={handleChange}
                         />
-                        <FormControlLabel
-                            control={
-                                <Checkbox value='remember' color='primary' />
-                            }
-                            label='Remember me'
-                        />
+                        {/*<FormControlLabel*/}
+                        {/*    control={*/}
+                        {/*        <Checkbox value='remember' color='primary' />*/}
+                        {/*    }*/}
+                        {/*    label='Remember me'*/}
+                        {/*/>*/}
                         <Button
                             type='submit'
                             fullWidth

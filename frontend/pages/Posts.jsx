@@ -15,7 +15,18 @@ const Posts = ({ posts }) => {
             }}
         >
             {!posts || posts.length === 0 ? (
-                <Typography>No Posts Here!</Typography>
+                < Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                        width: 1,
+                        m: 5,
+                    }}>
+                    <Typography>
+                        <h1>No Posts Here!</h1>
+                    </Typography>
+                </Box>
             ) : (
                 <GridCustom posts={posts} />
             )}
