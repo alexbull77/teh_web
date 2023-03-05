@@ -110,7 +110,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                             display: { xs: "none", md: "flex" },
                             fontFamily: "Lato",
                             fontWeight: 500,
-                            letterSpacing: ".2rem",
+                            letterSpacing: ".1rem",
                             color: "inherit",
                             textDecoration: "none",
                         }}
