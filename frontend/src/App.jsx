@@ -1,20 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Footer from "../components/Footer";
-import AppBarCustom from "../layout/AppBarCustom";
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
-import PostDetail from "../pages/PostDetail";
-import Posts from "../pages/Posts";
-import ProductDetail from "../pages/ProductDetail";
-import Products from "../pages/Products";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
+import {useEffect, useState} from "react";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Footer from "./components/Footer";
+import AppBarCustom from "./layout/AppBarCustom";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import PostDetail from "./pages/PostDetail";
+import Posts from "./pages/Posts";
+import ProductDetail from "./pages/ProductDetail";
+import Products from "./pages/Products";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import {CssBaseline} from "@mui/material";
-import "./App.css"
 import {createTheme, ThemeProvider} from "@mui/material/";
-import axiosInstance from "./axios.js";
 
 const theme = createTheme({
     palette: {
@@ -45,8 +43,6 @@ function App() {
 
     const [isAuth, setIsAuth] = useState(false);
 
-    console.log(isAuth)
-
     useEffect(() => {
         if (localStorage.getItem("access_token") !== null) {
             setIsAuth(true);
@@ -71,44 +67,44 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <div className='App'>
-                <CssBaseline />
+                <CssBaseline/>
                 <Router>
                     <AppBarCustom isAuth={isAuth} setIsAuth={setIsAuth} />
                     <Routes>
                         <Route
                             path='/'
-                            element={<Home />}
-                            errorElement={<NotFound />}
+                            element={<Home/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/posts'
-                            element={<Posts posts={posts} />}
-                            errorElement={<NotFound />}
+                            element={<Posts posts={posts}/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/products'
-                            element={<Products products={products} />}
-                            errorElement={<NotFound />}
+                            element={<Products products={products}/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/signup'
-                            element={<SignUp />}
-                            errorElement={<NotFound />}
+                            element={<SignUp/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/signin'
-                            element={<SignIn isAuth={isAuth} setIsAuth={setIsAuth} />}
-                            errorElement={<NotFound />}
+                            element={<SignIn isAuth={isAuth} setIsAuth={setIsAuth}/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/posts/:postId'
-                            element={<PostDetail />}
-                            errorElement={<NotFound />}
+                            element={<PostDetail/>}
+                            errorElement={<NotFound/>}
                         />
                         <Route
                             path='/products/:productId'
-                            element={<ProductDetail />}
-                            errorElement={<NotFound />}
+                            element={<ProductDetail/>}
+                            errorElement={<NotFound/>}
                         />
                     </Routes>
                     <Footer

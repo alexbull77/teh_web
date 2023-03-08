@@ -1,20 +1,12 @@
 import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import ProductCardCustom from "../layout/ProductCardCustom";
+import ProductCardCustom from "../layout/ProductCardCustom.jsx";
+import CustomGridContainer from "../components/CustomGridContainer.jsx";
 
 const Products = ({ products }) => {
     return (
-        <Box
-            sx={{
-                bgcolor: "background.paper",
-                boxShadow: 1,
-                borderRadius: 2,
-                p: 2,
-                minWidth: 300,
-            }}
-        >
-            <Grid container my={6} rowSpacing={5} columnSpacing={5} alignItems="center" justifyContent="center">
+        <CustomGridContainer>
                 {!products || products.length === 0 ? (
                     < Box
                         display="flex"
@@ -43,8 +35,7 @@ const Products = ({ products }) => {
                         </Grid>
                     ))
                 )}
-            </Grid>
-        </Box>
+        </CustomGridContainer>
     );
 };
 

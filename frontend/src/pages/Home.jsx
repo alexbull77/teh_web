@@ -1,6 +1,6 @@
 import {Box, Button, Grid, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import teaImage from "../static/teaImage.jpg";
+import teaImage from "../../static/teaImage.jpg";
 
 
 const Home = () => {

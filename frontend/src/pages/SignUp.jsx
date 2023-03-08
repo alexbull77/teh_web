@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from "../src/axios.js";
+import axiosInstance from "../axios.js";
 
 function Copyright(props) {
     return (
@@ -179,7 +179,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent='flex-end'>
                             <Grid item>
-                                <Link href='/signin' variant='body2'>
+                                <Link href='/src/pages/SignIn' variant='body2'>
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>

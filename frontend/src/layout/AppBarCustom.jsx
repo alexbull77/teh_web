@@ -1,6 +1,6 @@
 import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Box } from "@mui/material";
+import {Box, DialogContent} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,10 +13,11 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import {Link, useNavigate} from "react-router-dom";
-import axiosInstance from "../src/axios.js";
+import axiosInstance from "../axios.js";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
-import Dialog from "@mui/material/Dialog";
+import {Dialog} from '@mui/material';
+import {useState} from 'react'
 
 const pages = [
     {
@@ -33,29 +34,30 @@ const pages = [
     },
 ];
 
-function AppBarCustom({ isAuth, setIsAuth }) {
+function AppBarCustom({isAuth, setIsAuth, }) {
 
-    console.log(isAuth)
+    // console.log(isAuth)
 
     const navigate = useNavigate()
 
     const settings = isAuth
         ? [
-              {
-                  name: "Profile",
-                  link: "",
-              },
-          ]
+            {
+                name: "Profile",
+                link: "",
+            },
+        ]
         : [
-              {
-                  name: "SignIn",
-                  link: "signin",
-              },
-          ];
+            {
+                name: "SignIn",
+                link: "signin",
+            },
+        ];
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [open, setOpen] = React.useState(false);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+    const [open, setOpen] = useState(false);
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -65,6 +67,8 @@ function AppBarCustom({ isAuth, setIsAuth }) {
         setOpen(false);
     };
 
+
+    console.log(open)
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -98,7 +102,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <FreeBreakfastIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                        sx={{display: {xs: "none", md: "flex"}, mr: 1}}
                     />
                     <Typography
                         variant='h6'
@@ -107,7 +111,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                         to='/'
                         sx={{
                             mr: 2,
-                            display: { xs: "none", md: "flex" },
+                            display: {xs: "none", md: "flex"},
                             fontFamily: "Lato",
                             fontWeight: 500,
                             letterSpacing: ".1rem",
@@ -121,7 +125,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                     <Box
                         sx={{
                             flexGrow: 1,
-                            display: { xs: "flex", md: "none" },
+                            display: {xs: "flex", md: "none"},
                         }}
                     >
                         <IconButton
@@ -132,7 +136,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                             onClick={handleOpenNavMenu}
                             color='inherit'
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                         <Menu
                             id='menu-appbar'
@@ -149,7 +153,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: "block", md: "none" },
+                                display: {xs: "block", md: "none"},
                             }}
                         >
                             {pages.map((page) => (
@@ -167,7 +171,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                         </Menu>
                     </Box>
                     <FreeBreakfastIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                        sx={{display: {xs: "flex", md: "none"}, mr: 1}}
                     />
                     <Typography
                         variant='h5'
@@ -176,7 +180,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                         to='/'
                         sx={{
                             mr: 2,
-                            display: { xs: "flex", md: "none" },
+                            display: {xs: "flex", md: "none"},
                             flexGrow: 1,
                             fontFamily: "monospace",
                             fontWeight: 700,
@@ -190,7 +194,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                     <Box
                         sx={{
                             flexGrow: 1,
-                            display: { xs: "none", md: "flex" },
+                            display: {xs: "none", md: "flex"},
                         }}
                     >
                         {pages.map((page) => (
@@ -199,18 +203,18 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                                 component={Link}
                                 to={page.link}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: "white", display: "block" }}
+                                sx={{my: 2, color: "white", display: "block"}}
                             >
                                 {page.name}
                             </Button>
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{flexGrow: 0}}>
                         <Tooltip title='Open settings'>
                             <IconButton
                                 onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
+                                sx={{p: 0}}
                             >
                                 <Avatar
                                     alt='Remy Sharp'
@@ -219,7 +223,7 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            sx={{ mt: "45px" }}
+                            sx={{mt: "45px"}}
                             id='menu-appbar'
                             anchorEl={anchorElUser}
                             anchorOrigin={{
@@ -241,20 +245,30 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                                     key={setting.name}
                                     onClick={handleCloseUserMenu}
                                 >
-                                    <Typography textAlign='center'>
+                                    {/*<Typography textAlign='center'>*/}
+                                    {/*    {setting.name}*/}
+                                    {/*</Typography>*/}
+                                    <Button>
                                         {setting.name}
-                                    </Typography>
+                                    </Button>
                                 </MenuItem>
 
                             ))}
                             {
                                 isAuth && (
                                     <MenuItem
-                                        onClick={handleClickOpen}
+                                        onClick={() => {
+                                            handleCloseUserMenu();
+                                            handleClickOpen();
+                                        }
+                                        }
                                     >
-                                        <Typography textAlign='center'>
+                                        {/*<Typography textAlign='center'>*/}
+                                        {/*    Logout*/}
+                                        {/*</Typography>*/}
+                                        <Button onClick={handleClickOpen}>
                                             Logout
-                                        </Typography>
+                                        </Button>
                                         <Dialog
                                             open={open}
                                             onClose={handleClose}
@@ -264,8 +278,11 @@ function AppBarCustom({ isAuth, setIsAuth }) {
                                             <DialogTitle id="alert-dialog-title">
                                                 {"Are you sure you want to logout?"}
                                             </DialogTitle>
+                                            <DialogContent>
+                                                Hey There!
+                                            </DialogContent>
                                             <DialogActions>
-                                                <Button onClick={handleClose} autoFocus>Back</Button>
+                                                <Button onClick={() => setOpen(false)}>Back</Button>
                                                 <Button onClick={handleLogout}>
                                                     Logout
                                                 </Button>
@@ -281,4 +298,5 @@ function AppBarCustom({ isAuth, setIsAuth }) {
         </AppBar>
     );
 }
+
 export default AppBarCustom;

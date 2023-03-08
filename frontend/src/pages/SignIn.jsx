@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import axiosInstance from "../src/axios.js";
+import axiosInstance from "../axios.js";
 
 function Copyright(props) {
     return (
@@ -129,12 +129,12 @@ export default function SignIn({ isAuth, setIsAuth }) {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href='#' variant='body2'>
+                                <Link href='src/pages#' variant='body2'>
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href='/signup' variant='body2'>
+                                <Link href='/src/pages/SignUp' variant='body2'>
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

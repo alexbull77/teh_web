@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import GridCustom from "../layout/GridCustom";
+import GridCustom from "../layout/GridCustom.jsx";
 
 const Posts = ({ posts }) => {
     // console.log(">>Posts", posts);
