@@ -1,19 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import React from "react";
-import GridCustom from "../layout/GridCustom.jsx";
+import PostCardCustom from "../layout/PostCardCustom.jsx";
+import CustomGridContainer from "../components/CustomGridContainer.jsx";
 
-const Posts = ({ posts }) => {
-    // console.log(">>Posts", posts);
+const Posts = ({posts}) => {
     return (
-        <Box
-            sx={{
-                bgcolor: "#fff",
-                boxShadow: 1,
-                borderRadius: 2,
-                p: 2,
-                minWidth: 300,
-            }}
-        >
+        <CustomGridContainer>
             {!posts || posts.length === 0 ? (
                 < Box
                     display="flex"
@@ -28,9 +20,18 @@ const Posts = ({ posts }) => {
                     </Typography>
                 </Box>
             ) : (
-                <GridCustom posts={posts} />
+                posts?.map((post) => (
+                    <Grid item xs={12} md={6} lg={3} key={post.id}>
+                        <PostCardCustom
+                            id={post.id}
+                            title={post.title}
+                            short_description={post.short_description}
+                            images={post.images}
+                        />
+                    </Grid>
+                ))
             )}
-        </Box>
+        </CustomGridContainer>
     );
 };
 
