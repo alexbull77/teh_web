@@ -18,6 +18,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import {Dialog} from '@mui/material';
 import {useState} from 'react'
+import CustomTitleBig from "../components/CustomTitleBig.jsx";
+import CustomIconButton from "../components/CustomIconButton.jsx";
+import CustomMenuBig from "../components/CustomMenuBig.jsx";
+import CustomTitleSmall from "../components/CustomTitleSmall.jsx";
+import CustomDropDown from "../components/CustomDropDown.jsx";
+import CustomRightMenu from "../components/CustomRightMenu/CustomRightMenu.jsx";
 
 const pages = [
     {
@@ -34,44 +40,44 @@ const pages = [
     },
 ];
 
-function AppBarCustom({isAuth, setIsAuth, }) {
+function AppBarCustom({isAuth, setIsAuth,}) {
 
     // console.log(isAuth)
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const settings = isAuth
-        ? [
-            {
-                name: "Profile",
-                link: "",
-            },
-        ]
-        : [
-            {
-                name: "SignIn",
-                link: "signin",
-            },
-        ];
+    // const settings = isAuth
+    //     ? [
+    //         {
+    //             name: "Profile",
+    //             link: "",
+    //         },
+    //     ]
+    //     : [
+    //         {
+    //             name: "SignIn",
+    //             link: "signin",
+    //         },
+    //     ];
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
 
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // };
+    //
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
 
     console.log(open)
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+    // const handleOpenNavMenu = (event) => {
+    //     setAnchorElNav(event.currentTarget);
+    // };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -84,18 +90,18 @@ function AppBarCustom({isAuth, setIsAuth, }) {
         setAnchorElUser(null);
     };
 
-    const handleLogout = () => {
-        const response = axiosInstance.post('user/logout/blacklist/', {
-            refresh_token: localStorage.getItem('refresh_token'),
-        });
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        axiosInstance.defaults.headers['Authorization'] = null;
-        handleClose();
-        handleCloseUserMenu();
-        setIsAuth(false);
-        navigate('/signin');
-    }
+    // const handleLogout = () => {
+    //     const response = axiosInstance.post('user/logout/blacklist/', {
+    //         refresh_token: localStorage.getItem('refresh_token'),
+    //     });
+    //     localStorage.removeItem('access_token');
+    //     localStorage.removeItem('refresh_token');
+    //     axiosInstance.defaults.headers['Authorization'] = null;
+    //     handleClose();
+    //     handleCloseUserMenu();
+    //     setIsAuth(false);
+    //     navigate('/signin');
+    // }
 
     return (
         <AppBar position='static'>
@@ -104,199 +110,69 @@ function AppBarCustom({isAuth, setIsAuth, }) {
                     <FreeBreakfastIcon
                         sx={{display: {xs: "none", md: "flex"}, mr: 1}}
                     />
-                    <Typography
-                        variant='h6'
-                        noWrap
-                        component={Link}
-                        to='/'
-                        sx={{
-                            mr: 2,
-                            display: {xs: "none", md: "flex"},
-                            fontFamily: "Lato",
-                            fontWeight: 500,
-                            letterSpacing: ".1rem",
-                            color: "inherit",
-                            textDecoration: "none",
-                        }}
-                    >
-                        Drink Tea With Us!
-                    </Typography>
-
+                    <CustomTitleBig text={'Drink Tea With Us!'}/>
                     <Box
                         sx={{
                             flexGrow: 1,
                             display: {xs: "flex", md: "none"},
                         }}
                     >
-                        <IconButton
-                            size='large'
-                            aria-label='account of current user'
-                            aria-controls='menu-appbar'
-                            aria-haspopup='true'
-                            onClick={handleOpenNavMenu}
-                            color='inherit'
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Menu
-                            id='menu-appbar'
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "left",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: {xs: "block", md: "none"},
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    component={Link}
-                                    to={page.link}
-                                    key={page.name}
-                                    onClick={handleCloseNavMenu}
-                                >
-                                    <Typography textAlign='center'>
-                                        {page.name}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        <CustomIconButton setAnchorElNav={setAnchorElNav}/>
+
+                        <CustomMenuBig anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} pages={pages}/>
                     </Box>
                     <FreeBreakfastIcon
                         sx={{display: {xs: "flex", md: "none"}, mr: 1}}
                     />
-                    <Typography
-                        variant='h5'
-                        noWrap
-                        component={Link}
-                        to='/'
-                        sx={{
-                            mr: 2,
-                            display: {xs: "flex", md: "none"},
-                            flexGrow: 1,
-                            fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".3rem",
-                            color: "inherit",
-                            textDecoration: "none",
-                        }}
-                    >
-                        Drink Tea With Us!
-                    </Typography>
-                    <Box
-                        sx={{
-                            flexGrow: 1,
-                            display: {xs: "none", md: "flex"},
-                        }}
-                    >
-                        {pages.map((page) => (
-                            <Button
-                                key={page.name}
-                                component={Link}
-                                to={page.link}
-                                onClick={handleCloseNavMenu}
-                                sx={{my: 2, color: "white", display: "block"}}
-                            >
-                                {page.name}
-                            </Button>
-                        ))}
-                    </Box>
+                    {/*<Typography*/}
+                    {/*    variant='h5'*/}
+                    {/*    noWrap*/}
+                    {/*    component={Link}*/}
+                    {/*    to='/'*/}
+                    {/*    sx={{*/}
+                    {/*        mr: 2,*/}
+                    {/*        display: {xs: "flex", md: "none"},*/}
+                    {/*        flexGrow: 1,*/}
+                    {/*        fontFamily: "monospace",*/}
+                    {/*        fontWeight: 700,*/}
+                    {/*        letterSpacing: ".3rem",*/}
+                    {/*        color: "inherit",*/}
+                    {/*        textDecoration: "none",*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    Drink Tea With Us!*/}
+                    {/*</Typography>*/}
+                    <CustomTitleSmall text={'Drink Tea With Us!'}/>
+                    {/*<Box*/}
+                    {/*    sx={{*/}
+                    {/*        flexGrow: 1,*/}
+                    {/*        display: {xs: "none", md: "flex"},*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    {pages.map((page) => (*/}
+                    {/*        <Button*/}
+                    {/*            key={page.name}*/}
+                    {/*            component={Link}*/}
+                    {/*            to={page.link}*/}
+                    {/*            onClick={handleCloseNavMenu}*/}
+                    {/*            sx={{my: 2, color: "white", display: "block"}}*/}
+                    {/*        >*/}
+                    {/*            {page.name}*/}
+                    {/*        </Button>*/}
+                    {/*    ))}*/}
+                    {/*</Box>*/}
+                    <CustomDropDown handleCloseNavMenu={handleCloseNavMenu} pages={pages} />
 
-                    <Box sx={{flexGrow: 0}}>
-                        <Tooltip title='Open settings'>
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{p: 0}}
-                            >
-                                <Avatar
-                                    alt='Remy Sharp'
-                                    src='https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'
-                                />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{mt: "45px"}}
-                            id='menu-appbar'
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    component={Link}
-                                    to={setting.link}
-                                    key={setting.name}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    {/*<Typography textAlign='center'>*/}
-                                    {/*    {setting.name}*/}
-                                    {/*</Typography>*/}
-                                    <Button>
-                                        {setting.name}
-                                    </Button>
-                                </MenuItem>
-
-                            ))}
-                            {
-                                isAuth && (
-                                    <MenuItem
-                                        onClick={() => {
-                                            handleCloseUserMenu();
-                                            handleClickOpen();
-                                        }
-                                        }
-                                    >
-                                        {/*<Typography textAlign='center'>*/}
-                                        {/*    Logout*/}
-                                        {/*</Typography>*/}
-                                        <Button onClick={handleClickOpen}>
-                                            Logout
-                                        </Button>
-                                        <Dialog
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="alert-dialog-title"
-                                            aria-describedby="alert-dialog-description"
-                                        >
-                                            <DialogTitle id="alert-dialog-title">
-                                                {"Are you sure you want to logout?"}
-                                            </DialogTitle>
-                                            <DialogContent>
-                                                Hey There!
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <Button onClick={() => setOpen(false)}>Back</Button>
-                                                <Button onClick={handleLogout}>
-                                                    Logout
-                                                </Button>
-                                            </DialogActions>
-                                        </Dialog>
-                                    </MenuItem>
-                                )
-                            }
-                        </Menu>
-                    </Box>
+                <CustomRightMenu isAuth={isAuth}
+                                 setIsAuth={setIsAuth}
+                                 handleOpenUserMenu={handleOpenUserMenu}
+                                 anchorElUser={anchorElUser}
+                                 handleCloseUserMenu={handleCloseUserMenu}
+                />
                 </Toolbar>
             </Container>
         </AppBar>
-    );
+);
 }
 
 export default AppBarCustom;
