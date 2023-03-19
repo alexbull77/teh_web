@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from django.conf import settings
 from .models import PostModel, ImageModel, TagModel
-from django.contrib.auth.models import User
+from users.models import NewUser
+# from django.contrib.auth.models import User
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -11,8 +13,8 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', 'username')
+        model = NewUser
+        fields = ('id', 'email', 'user_name')
 
 
 class TagSerializer(serializers.ModelSerializer):
