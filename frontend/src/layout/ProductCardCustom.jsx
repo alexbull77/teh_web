@@ -56,7 +56,7 @@ export default function ProductCardCustom({
                 </Box>
             </CardContent>
             <CardActions>
-                <Button size='small' component={Link} to={`/products/${id}`}>
+                <Button size='small' component={Link} to={`/product/${id}`}>
                     Learn More
                 </Button>
             </CardActions>

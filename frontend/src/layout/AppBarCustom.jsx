@@ -1,10 +1,12 @@
 import FreeBreakfastIcon from "@mui/icons-material/FreeBreakfast";
 import MenuIcon from "@mui/icons-material/Menu";
-import {Box, DialogContent} from "@mui/material";
+import { Box, Dialog, DialogContent } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,27 +14,24 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../axios.js";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogActions from "@mui/material/DialogActions";
-import {Dialog} from '@mui/material';
-import {useState} from 'react'
-import CustomTitleBig from "../components/CustomTitleBig.jsx";
+import CustomDropDown from "../components/CustomDropDown.jsx";
 import CustomIconButton from "../components/CustomIconButton.jsx";
 import CustomMenuBig from "../components/CustomMenuBig.jsx";
-import CustomTitleSmall from "../components/CustomTitleSmall.jsx";
-import CustomDropDown from "../components/CustomDropDown.jsx";
 import CustomRightMenu from "../components/CustomRightMenu/CustomRightMenu.jsx";
+import CustomTitleBig from "../components/CustomTitleBig.jsx";
+import CustomTitleSmall from "../components/CustomTitleSmall.jsx";
 
 const pages = [
     {
         name: "Blog",
-        link: "/posts",
+        link: "/post",
     },
     {
         name: "Products",
-        link: "/products",
+        link: "/product",
     },
     {
         name: "Pricing",
@@ -40,8 +39,7 @@ const pages = [
     },
 ];
 
-function AppBarCustom({isAuth, setIsAuth,}) {
-
+function AppBarCustom({ isAuth, setIsAuth }) {
     // console.log(isAuth)
 
     // const navigate = useNavigate()
@@ -64,7 +62,6 @@ function AppBarCustom({isAuth, setIsAuth,}) {
     const [anchorElUser, setAnchorElUser] = useState(null);
     // const [open, setOpen] = useState(false);
 
-
     // const handleClickOpen = () => {
     //     setOpen(true);
     // };
@@ -73,8 +70,7 @@ function AppBarCustom({isAuth, setIsAuth,}) {
     //     setOpen(false);
     // };
 
-
-    console.log(open)
+    console.log(open);
     // const handleOpenNavMenu = (event) => {
     //     setAnchorElNav(event.currentTarget);
     // };
@@ -108,21 +104,25 @@ function AppBarCustom({isAuth, setIsAuth,}) {
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <FreeBreakfastIcon
-                        sx={{display: {xs: "none", md: "flex"}, mr: 1}}
+                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                     />
-                    <CustomTitleBig text={'Drink Tea With Us!'}/>
+                    <CustomTitleBig text={"Drink Tea With Us!"} />
                     <Box
                         sx={{
                             flexGrow: 1,
-                            display: {xs: "flex", md: "none"},
+                            display: { xs: "flex", md: "none" },
                         }}
                     >
-                        <CustomIconButton setAnchorElNav={setAnchorElNav}/>
+                        <CustomIconButton setAnchorElNav={setAnchorElNav} />
 
-                        <CustomMenuBig anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} pages={pages}/>
+                        <CustomMenuBig
+                            anchorElNav={anchorElNav}
+                            handleCloseNavMenu={handleCloseNavMenu}
+                            pages={pages}
+                        />
                     </Box>
                     <FreeBreakfastIcon
-                        sx={{display: {xs: "flex", md: "none"}, mr: 1}}
+                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
                     />
                     {/*<Typography*/}
                     {/*    variant='h5'*/}
@@ -142,7 +142,7 @@ function AppBarCustom({isAuth, setIsAuth,}) {
                     {/*>*/}
                     {/*    Drink Tea With Us!*/}
                     {/*</Typography>*/}
-                    <CustomTitleSmall text={'Drink Tea With Us!'}/>
+                    <CustomTitleSmall text={"Drink Tea With Us!"} />
                     {/*<Box*/}
                     {/*    sx={{*/}
                     {/*        flexGrow: 1,*/}
@@ -161,18 +161,22 @@ function AppBarCustom({isAuth, setIsAuth,}) {
                     {/*        </Button>*/}
                     {/*    ))}*/}
                     {/*</Box>*/}
-                    <CustomDropDown handleCloseNavMenu={handleCloseNavMenu} pages={pages} />
+                    <CustomDropDown
+                        handleCloseNavMenu={handleCloseNavMenu}
+                        pages={pages}
+                    />
 
-                <CustomRightMenu isAuth={isAuth}
-                                 setIsAuth={setIsAuth}
-                                 handleOpenUserMenu={handleOpenUserMenu}
-                                 anchorElUser={anchorElUser}
-                                 handleCloseUserMenu={handleCloseUserMenu}
-                />
+                    <CustomRightMenu
+                        isAuth={isAuth}
+                        setIsAuth={setIsAuth}
+                        handleOpenUserMenu={handleOpenUserMenu}
+                        anchorElUser={anchorElUser}
+                        handleCloseUserMenu={handleCloseUserMenu}
+                    />
                 </Toolbar>
             </Container>
         </AppBar>
-);
+    );
 }
 
 export default AppBarCustom;

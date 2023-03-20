@@ -1,20 +1,33 @@
-import {Box, Grid, Typography} from "@mui/material";
-import React from "react";
-import PostCardCustom from "../layout/PostCardCustom.jsx";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import axios from "../axios.js";
 import CustomGridContainer from "../components/CustomGridContainer.jsx";
+import PostCardCustom from "../layout/PostCardCustom.jsx";
 
-const Posts = ({posts}) => {
+const Posts = () => {
+    const [posts, setPosts] = useState(null);
+
+    useEffect(() => {
+        axios
+            .get("http://127.0.0.1:8000/api/post/")
+            .then((response) => setPosts(response.data))
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <CustomGridContainer>
             {!posts || posts.length === 0 ? (
-                < Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
+                <Box
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                     sx={{
                         width: 1,
                         m: 5,
-                    }}>
+                    }}
+                >
                     <Typography>
                         <h1>No Posts Here!</h1>
                     </Typography>

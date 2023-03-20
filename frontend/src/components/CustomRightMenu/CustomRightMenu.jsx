@@ -1,23 +1,22 @@
-import React, {useState} from 'react';
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
+import { Box, Dialog, DialogContent } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import {Link, useNavigate} from "react-router-dom";
-import Button from "@mui/material/Button";
-import {Box, Dialog, DialogContent} from "@mui/material";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogActions from "@mui/material/DialogActions";
+import Tooltip from "@mui/material/Tooltip";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../axios.js";
 
-const CustomRightMenu = ({
-                             isAuth,
-                             setIsAuth,
-                             handleOpenUserMenu
-                         }, anchorElUser, handleCloseUserMenu) => {
-
-    const navigate = useNavigate()
+const CustomRightMenu = (
+    { isAuth, setIsAuth, handleOpenUserMenu },
+    anchorElUser,
+    handleCloseUserMenu
+) => {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -30,38 +29,35 @@ const CustomRightMenu = ({
 
     const settings = isAuth
         ? [
-            {
-                name: "Profile",
-                link: "",
-            },
-        ]
+              {
+                  name: "Profile",
+                  link: "",
+              },
+          ]
         : [
-            {
-                name: "SignIn",
-                link: "signin",
-            },
-        ];
+              {
+                  name: "SignIn",
+                  link: "/signin",
+              },
+          ];
 
     const handleLogout = () => {
-        const response = axiosInstance.post('user/logout/blacklist/', {
-            refresh_token: localStorage.getItem('refresh_token'),
+        const response = axiosInstance.post("user/logout/blacklist/", {
+            refresh_token: localStorage.getItem("refresh_token"),
         });
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        axiosInstance.defaults.headers['Authorization'] = null;
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        axiosInstance.defaults.headers["Authorization"] = null;
         handleClose();
         handleCloseUserMenu();
         setIsAuth(false);
-        navigate('/signin');
-    }
+        navigate("/signin");
+    };
 
     return (
-        <Box sx={{flexGrow: 0}}>
+        <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
-                <IconButton
-                    onClick={handleOpenUserMenu}
-                    sx={{p: 0}}
-                >
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                         alt='Remy Sharp'
                         src='https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'
@@ -69,7 +65,7 @@ const CustomRightMenu = ({
                 </IconButton>
             </Tooltip>
             <Menu
-                sx={{mt: "45px"}}
+                sx={{ mt: "45px" }}
                 id='menu-appbar'
                 anchorEl={anchorElUser}
                 anchorOrigin={{
@@ -94,49 +90,39 @@ const CustomRightMenu = ({
                         {/*<Typography textAlign='center'>*/}
                         {/*    {setting.name}*/}
                         {/*</Typography>*/}
-                        <Button>
-                            {setting.name}
-                        </Button>
+                        <Button>{setting.name}</Button>
                     </MenuItem>
-
                 ))}
-                {
-                    isAuth && (
-                        <MenuItem
-                            onClick={() => {
-                                handleCloseUserMenu();
-                                handleClickOpen();
-                            }
-                            }
+                {isAuth && (
+                    <MenuItem
+                        onClick={() => {
+                            handleCloseUserMenu();
+                            handleClickOpen();
+                        }}
+                    >
+                        {/*<Typography textAlign='center'>*/}
+                        {/*    Logout*/}
+                        {/*</Typography>*/}
+                        <Button onClick={handleClickOpen}>Logout</Button>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby='alert-dialog-title'
+                            aria-describedby='alert-dialog-description'
                         >
-                            {/*<Typography textAlign='center'>*/}
-                            {/*    Logout*/}
-                            {/*</Typography>*/}
-                            <Button onClick={handleClickOpen}>
-                                Logout
-                            </Button>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">
-                                    {"Are you sure you want to logout?"}
-                                </DialogTitle>
-                                <DialogContent>
-                                    Hey There!
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={() => setOpen(false)}>Back</Button>
-                                    <Button onClick={handleLogout}>
-                                        Logout
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </MenuItem>
-                    )
-                }
+                            <DialogTitle id='alert-dialog-title'>
+                                {"Are you sure you want to logout?"}
+                            </DialogTitle>
+                            <DialogContent>Hey There!</DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => setOpen(false)}>
+                                    Back
+                                </Button>
+                                <Button onClick={handleLogout}>Logout</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </MenuItem>
+                )}
             </Menu>
         </Box>
     );

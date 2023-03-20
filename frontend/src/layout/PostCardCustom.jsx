@@ -26,12 +26,16 @@ export default function PostCardCustom({
                 <Typography gutterBottom variant='h5' component='div'>
                     {title}
                 </Typography>
-                <Typography variant='body2' color='text.secondary'>
+                <Typography
+                    component={"span"}
+                    variant={"body2"}
+                    color='text.secondary'
+                >
                     {short_description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small' component={Link} to={`/posts/${id}`}>
+                <Button size='small' component={Link} to={`/post/${id}`}>
                     Learn More
                 </Button>
             </CardActions>
