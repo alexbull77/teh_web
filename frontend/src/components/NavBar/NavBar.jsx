@@ -8,6 +8,7 @@ const Nav = () => {
         { name: "SignIn", link: "/signin" },
         { name: "SignUp", link: "/signup" },
     ];
+    const ahaha = "sdgvr";
 
     let [open, setOpen] = useState(false);
 
