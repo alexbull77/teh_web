@@ -8,15 +8,15 @@ const ProductDetail = () => {
 
     useEffect(() => {
         axios
-            .get(`http://127.0.0.1:8000/api/product/${productId}`)
+            .get(`https://dummyjson.com/products/${productId}`)
             .then((res) => setProduct(res.data));
     }, []);
 
     return (
-        <div>
+        <div className='mt=50 place-items-center h-screen'>
             {product ? (
                 <div>
-                    <h1>{product.name}</h1>
+                    <h1>{product.title}</h1>
                     <p>Price: ${product.price}</p>
                     <p>{product.description}</p>
                 </div>

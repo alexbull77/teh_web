@@ -7,21 +7,14 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-export default function PostCardCustom({
-    id,
-    title,
-    short_description,
-    images,
-}) {
-    const [first_image, second_image, third_image] = images;
-
+export default function PostCardCustom({ id, title, body }) {
     return (
         <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
+            {/* <CardMedia
                 sx={{ height: 140 }}
                 image={first_image.url}
                 title={first_image.alt_name}
-            />
+            /> */}
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
                     {title}
@@ -31,7 +24,7 @@ export default function PostCardCustom({
                     variant={"body2"}
                     color='text.secondary'
                 >
-                    {short_description}
+                    {body}
                 </Typography>
             </CardContent>
             <CardActions>

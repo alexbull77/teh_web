@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const PostDetail = () => {
 
     useEffect(() => {
         axios
-            .get(`http://127.0.0.1:8000/api/post/${postId}`)
+            .get(`https://dummyjson.com/posts/${postId}`)
             .then((res) => setPost(res.data));
         // console.log("Post Detail>> ", post);
     }, []);
@@ -37,19 +37,19 @@ const PostDetail = () => {
                             >
                                 {post.title}
                             </Typography>
-                            <Typography variant='subtitle1' gutterBottom>
+                            {/* <Typography variant='subtitle1' gutterBottom>
                                 By {post.author?.username}
-                            </Typography>
+                            </Typography> */}
                             <Divider />
-                            <Typography
+                            {/* <Typography
                                 variant='body1'
                                 gutterBottom
                                 style={{ marginTop: "1rem" }}
                             >
-                                {post.short_description}
-                            </Typography>
+                                {post.body}
+                            </Typography> */}
 
-                            <Carousel
+                            {/* <Carousel
                                 showArrows={false}
                                 stopOnHover={true}
                                 autoPlay={true}
@@ -65,7 +65,7 @@ const PostDetail = () => {
                                         </div>
                                     );
                                 })}
-                            </Carousel>
+                            </Carousel> */}
 
                             <Divider
                                 style={{
@@ -83,7 +83,7 @@ const PostDetail = () => {
                                     Tags
                                 </Typography>
                                 {post.tags?.map((tag) => (
-                                    <Chip key={tag.id} label={tag.name} />
+                                    <Chip label={tag} />
                                 ))}
                             </Paper>
                         </Grid>

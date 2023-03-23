@@ -10,8 +10,8 @@ const Products = () => {
 
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/api/product/")
-            .then((response) => setProducts(response.data))
+            .get("https://dummyjson.com/products")
+            .then((response) => setProducts(response.data.products))
             .catch((error) => {
                 console.log(error);
             });
@@ -40,9 +40,9 @@ const Products = () => {
                             id={product.id}
                             title={product.title}
                             description={product.description}
-                            image={product.images}
+                            image={product.thumbnail}
                             price={product.price}
-                            quantity={product.quantity}
+                            // quantity={product.quantity}
                         />
                     </Grid>
                 ))

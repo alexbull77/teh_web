@@ -4,7 +4,7 @@ import teaImage from "../../static/teaImage.jpg";
 
 const Home = () => {
     return (
-        <div className='grid place-items-center h-screen'>
+        <div className='grid place-items-center h-screen '>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <Box

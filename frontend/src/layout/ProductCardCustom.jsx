@@ -14,13 +14,12 @@ export default function ProductCardCustom({
     description,
     image,
     price,
-    quantity,
 }) {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
-                image={image.url}
-                title={image.alt_name}
+                image={image}
+                title={"some_alt_name"}
                 sx={{ height: 140, objectFit: "contain" }}
             />
             <CardContent>
@@ -41,13 +40,13 @@ export default function ProductCardCustom({
                         gutterBottom={true}
                     >
                         {price + " USD"}
-                        <Typography
+                        {/* <Typography
                             variant='h6'
                             color='textSecondary'
                             component='span'
                         >
                             {" / " + quantity}
-                        </Typography>
+                        </Typography> */}
                     </Typography>
                     {/* <Typography color="textSecondary" variant="subtitle1" component="p">{content['01_benefit1']}</Typography>
                     <Typography color="textSecondary" variant="subtitle1" component="p">{content['01_benefit2']}</Typography>

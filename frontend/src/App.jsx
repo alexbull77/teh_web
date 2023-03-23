@@ -91,6 +91,7 @@ export function App() {
                     title='Refresh your day with our premium teas'
                     description='Experience the finest selection of premium teas from around the world. Our carefully curated collection will delight your senses and invigorate your day. Try our teas today and discover a world of flavor and relaxation.'
                 />
+                {/* <h1 className='text-3xl font-bold underline'>Hello world!</h1> */}
             </div>
         </ThemeProvider>
     );

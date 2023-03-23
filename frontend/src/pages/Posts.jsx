@@ -9,8 +9,8 @@ const Posts = () => {
 
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:8000/api/post/")
-            .then((response) => setPosts(response.data))
+            .get("https://dummyjson.com/posts")
+            .then((response) => setPosts(response.data.posts))
             .catch((error) => {
                 console.log(error);
             });
@@ -33,13 +33,12 @@ const Posts = () => {
                     </Typography>
                 </Box>
             ) : (
-                posts?.map((post) => (
+                posts.map((post) => (
                     <Grid item xs={12} md={6} lg={3} key={post.id}>
                         <PostCardCustom
                             id={post.id}
                             title={post.title}
-                            short_description={post.short_description}
-                            images={post.images}
+                            body={post.body}
                         />
                     </Grid>
                 ))
