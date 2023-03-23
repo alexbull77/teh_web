@@ -1,16 +1,16 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios.js";
-import Grid from "@mui/material/Grid";
 
 function Copyright(props) {
     return (
@@ -30,12 +30,12 @@ function Copyright(props) {
     );
 }
 
-export default function SignIn({isAuth, setIsAuth}) {
-    const navigate = useNavigate()
+export default function SignIn() {
+    const navigate = useNavigate();
     // freezing the obj so it cannot be changed
     const initialFormData = Object.freeze({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
     });
 
     const [formData, updateFormData] = useState(initialFormData);
@@ -50,21 +50,21 @@ export default function SignIn({isAuth, setIsAuth}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData)
+        console.log(formData);
 
         axiosInstance
-            .post('token/', {
+            .post("token/", {
                 email: formData.email,
                 password: formData.password,
             })
-            .then((res => {
-                localStorage.setItem('access_token', res.data.access);
-                localStorage.setItem('refresh_token', res.data.refresh);
-                axiosInstance.defaults.headers['Authorization'] =
-                    'JWT ' + localStorage.getItem('access_token');
-                setIsAuth(true);
-                navigate('/');
-            }))
+            .then((res) => {
+                localStorage.setItem("access_token", res.data.access);
+                localStorage.setItem("refresh_token", res.data.refresh);
+                axiosInstance.defaults.headers["Authorization"] =
+                    "JWT " + localStorage.getItem("access_token");
+                // setIsAuth(true);
+                navigate("/");
+            });
     };
 
     return (
@@ -77,8 +77,8 @@ export default function SignIn({isAuth, setIsAuth}) {
                     alignItems: "center",
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: "secondary.main"}}>
-                    <LockOutlinedIcon/>
+                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                    <LockOutlinedIcon />
                 </Avatar>
                 <Typography component='h1' variant='h5'>
                     Sign in
@@ -87,7 +87,7 @@ export default function SignIn({isAuth, setIsAuth}) {
                     component='form'
                     onSubmit={handleSubmit}
                     noValidate
-                    sx={{mt: 1}}
+                    sx={{ mt: 1 }}
                 >
                     <TextField
                         margin='normal'
@@ -115,14 +115,17 @@ export default function SignIn({isAuth, setIsAuth}) {
                         type='submit'
                         fullWidth
                         variant='contained'
-                        sx={{mt: 3, mb: 2}}
+                        sx={{ mt: 3, mb: 2 }}
                     >
                         Sign In
                     </Button>
                     <Grid container justifyContent='flex-end'>
                         <Grid item>
-                            <Button variant={'outlined'}
-                                onClick={() => { navigate('/signup') }}
+                            <Button
+                                variant={"outlined"}
+                                onClick={() => {
+                                    navigate("/signup");
+                                }}
                             >
                                 Don't have an account? Sign Up
                             </Button>
@@ -130,7 +133,7 @@ export default function SignIn({isAuth, setIsAuth}) {
                     </Grid>
                 </Box>
             </Box>
-            <Copyright sx={{mt: 8, mb: 4}}/>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
     );
 }

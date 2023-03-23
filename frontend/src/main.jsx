@@ -9,48 +9,55 @@ import PostDetail from "./pages/PostDetail";
 import Posts from "./pages/Posts";
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
+import { Root } from "./pages/Root";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-// const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         component: <App />,
-//         children: [
-//             {
-//                 path: "/post",
-//                 element: <Posts />,
-//             },
-//             {
-//                 path: "/post/:postId",
-//                 element: <PostDetail />,
-//             },
-//             {
-//                 path: "/product",
-//                 element: <Products />,
-//             },
-//             {
-//                 path: "/product/:productId",
-//                 element: <ProductDetail />,
-//             },
-//             {
-//                 path: "/signin",
-//                 element: <SignIn />,
-//             },
-//             {
-//                 path: "/signup",
-//                 element: <SignUp />,
-//             },
-//             {
-//                 path: "*",
-//                 element: <NotFound />,
-//             },
-//         ],
-//     },
-// ]);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Root />,
+        children: [
+            {
+                path: "home",
+                element: <Home />,
+            },
+            {
+                path: "/posts",
+                element: <Posts />,
+            },
+            {
+                path: "/products",
+                element: <Products />,
+            },
+        ],
+    },
+
+    {
+        path: "/post/:postId",
+        element: <PostDetail />,
+    },
+
+    {
+        path: "/product/:productId",
+        element: <ProductDetail />,
+    },
+    {
+        path: "/signin",
+        element: <SignIn />,
+    },
+    {
+        path: "/signup",
+        element: <SignUp />,
+    },
+    {
+        path: "*",
+        element: <NotFound />,
+    },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <App />
+        <RouterProvider router={router}>{/* <App /> */}</RouterProvider>
     </React.StrictMode>
 );

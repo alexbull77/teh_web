@@ -4,9 +4,9 @@ import React, { useState } from "react";
 
 const Nav = () => {
     const Links = [
-        { name: "Home", link: "/" },
-        { name: "Posts", link: "/post" },
-        { name: "Products", link: "/product" },
+        { name: "Home", link: "/home" },
+        { name: "Posts", link: "/posts" },
+        { name: "Products", link: "/products" },
         { name: "SignIn", link: "/signin" },
         { name: "SignUp", link: "/signup" },
     ];
@@ -21,7 +21,7 @@ const Nav = () => {
         <div className='shadow-md w-full fixed top-0 left-0'>
             <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
                 <div className='font-bold text-2xl cursor-pointer flex-grow items-center font-[Poppins] text-gray-800'>
-                    <a href='/'>TeaHeaven</a>
+                    <a href='/home'>TeaHeaven</a>
                 </div>
 
                 <div
@@ -57,7 +57,7 @@ const Nav = () => {
                         </li>
                     ))}
                     <div className='py-2 px-6'>
-                        <Button href='/product' variant='outlined'>
+                        <Button href='/products' variant='outlined'>
                             Shop Now
                         </Button>
                     </div>

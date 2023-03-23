@@ -46,41 +46,6 @@ export function App() {
         }
     }, [isAuth]);
 
-    const router = createBrowserRouter([
-        {
-            path: "/",
-            element: <Home />,
-        },
-        {
-            path: "/post",
-            element: <Posts />,
-        },
-        {
-            path: "/post/:postId",
-            element: <PostDetail />,
-        },
-        {
-            path: "/product",
-            element: <Products />,
-        },
-        {
-            path: "/product/:productId",
-            element: <ProductDetail />,
-        },
-        {
-            path: "/signin",
-            element: <SignIn isAuth={isAuth} setIsAuth={setIsAuth} />,
-        },
-        {
-            path: "/signup",
-            element: <SignUp isAuth={isAuth} setIsAuth={setIsAuth} />,
-        },
-        {
-            path: "*",
-            element: <NotFound />,
-        },
-    ]);
-
     return (
         <ThemeProvider theme={theme}>
             <div className='App'>
