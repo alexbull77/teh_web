@@ -1,24 +1,23 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import axios from "../axios.js";
 import CustomGridContainer from "../components/CustomGridContainer.jsx";
 import PostCardCustom from "../layout/PostCardCustom.jsx";
+import { useRootStore } from "../MST/Stores/RootStore.jsx";
 
-const Posts = () => {
-    const [posts, setPosts] = useState(null);
+const Posts = observer(() => {
+    // const [posts, setPosts] = useState(null);
+
+    const { posts, fetchPosts, havePosts } = useRootStore();
 
     useEffect(() => {
-        axios
-            .get("https://dummyjson.com/posts")
-            .then((response) => setPosts(response.data.posts))
-            .catch((error) => {
-                console.log(error);
-            });
+        fetchPosts();
     }, []);
 
     return (
         <CustomGridContainer>
-            {!posts || posts.length === 0 ? (
+            {!havePosts || posts.length === 0 ? (
                 <Box
                     display='flex'
                     justifyContent='center'
@@ -45,6 +44,6 @@ const Posts = () => {
             )}
         </CustomGridContainer>
     );
-};
+});
 
 export default Posts;

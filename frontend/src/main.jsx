@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { App } from "./App";
 import "./index.css";
+import { ContextRootStore, store } from "./MST/Stores/RootStore";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import PostDetail from "./pages/PostDetail";
@@ -58,6 +58,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router}>{/* <App /> */}</RouterProvider>
+        <ContextRootStore.Provider value={store}>
+            <RouterProvider router={router} />
+        </ContextRootStore.Provider>
     </React.StrictMode>
 );

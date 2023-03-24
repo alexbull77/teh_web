@@ -1,16 +1,16 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material/";
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Footer from "./components/Footer";
-import Nav from "./components/NavBar/NavBar";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import PostDetail from "./pages/PostDetail";
-import Posts from "./pages/Posts";
-import ProductDetail from "./pages/ProductDetail";
-import Products from "./pages/Products";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+// import Footer from "./components/Footer";
+// import Nav from "./components/NavBar/NavBar";
+// import Home from "./pages/Home";
+// import NotFound from "./pages/NotFound";
+// import PostDetail from "./pages/PostDetail";
+// import Posts from "./pages/Posts";
+// import ProductDetail from "./pages/ProductDetail";
+// import Products from "./pages/Products";
+// import SignIn from "./pages/SignIn";
+// import SignUp from "./pages/SignUp";
 
 const theme = createTheme({
     palette: {

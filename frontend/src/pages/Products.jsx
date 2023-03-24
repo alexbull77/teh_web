@@ -1,25 +1,30 @@
 import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import axios from "../axios.js";
 import CustomGridContainer from "../components/CustomGridContainer.jsx";
 import ProductCardCustom from "../layout/ProductCardCustom.jsx";
+import { useRootStore } from "../MST/Stores/RootStore.jsx";
 
-const Products = () => {
-    const [products, setProducts] = useState(null);
+const Products = observer(() => {
+    const { products, fetchProducts, haveProducts } = useRootStore();
+
+    // const [products, setProducts] = useState(null);
 
     useEffect(() => {
-        axios
-            .get("https://dummyjson.com/products")
-            .then((response) => setProducts(response.data.products))
-            .catch((error) => {
-                console.log(error);
-            });
+        fetchProducts();
+        // axios
+        //     .get("https://dummyjson.com/products")
+        //     .then((response) => setProducts(response.data.products))
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     }, []);
 
     return (
         <CustomGridContainer>
-            {!products || products.length === 0 ? (
+            {!haveProducts || products.length === 0 ? (
                 <Box
                     display='flex'
                     justifyContent='center'
@@ -40,7 +45,7 @@ const Products = () => {
                             id={product.id}
                             title={product.title}
                             description={product.description}
-                            image={product.thumbnail}
+                            image={product.image}
                             price={product.price}
                             // quantity={product.quantity}
                         />
@@ -49,6 +54,6 @@ const Products = () => {
             )}
         </CustomGridContainer>
     );
-};
+});
 
 export default Products;
