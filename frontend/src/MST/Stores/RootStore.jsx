@@ -85,6 +85,21 @@ const RootStore = types
                 console.log(">>e", e);
             }
         }),
+
+        deletePost: flow(function* deletePost(id) {
+            // server-side delete
+            try {
+                console.log(id);
+                const response = yield axios.delete(
+                    `https://dummyjson.com/posts/${id}`
+                );
+                console.log(response);
+            } catch (e) {
+                console.log(">>e", e);
+            }
+            // client-side delete
+            self.posts = self.posts.filter((post) => post.id !== id);
+        }),
     }));
 
 export const store = RootStore.create({});

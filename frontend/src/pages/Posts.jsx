@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import axios from "../axios.js";
 import CustomGridContainer from "../components/CustomGridContainer.jsx";
-import PostCardCustom from "../layout/PostCardCustom.jsx";
+import { PostCardCustom } from "../layout/PostCardCustom.jsx";
 import { useRootStore } from "../MST/Stores/RootStore.jsx";
 
 const Posts = observer(() => {

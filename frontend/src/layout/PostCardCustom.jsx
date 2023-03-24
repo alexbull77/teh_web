@@ -2,12 +2,13 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { DeleteConfirmationDialog } from "../components/Dialogs/DeleteConfirmationDialog";
+import { EditPostDialog } from "../components/Dialogs/EditPostDialog";
 
-export default function PostCardCustom({ id, title, body }) {
+export const PostCardCustom = ({ id, title, body }) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
             {/* <CardMedia
@@ -31,7 +32,13 @@ export default function PostCardCustom({ id, title, body }) {
                 <Button size='small' component={Link} to={`/post/${id}`}>
                     Learn More
                 </Button>
+                <div className='cursor-pointer'>
+                    <EditPostDialog id={id} />
+                </div>
+                <div className='cursor-pointer'>
+                    <DeleteConfirmationDialog id={id} />
+                </div>
             </CardActions>
         </Card>
     );
-}
+};
