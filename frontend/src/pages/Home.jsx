@@ -17,7 +17,7 @@ const Home = () => {
                                 component='h1'
                                 style={{ marginBottom: "0.5rem" }}
                             >
-                                Welcome to Tea Haven
+                                Welcome to My Project
                             </Typography>
 
                             <Typography

@@ -30,17 +30,16 @@ const router = createBrowserRouter([
                 path: "/products",
                 element: <Products />,
             },
+            {
+                path: "/post/:postId",
+                element: <PostDetail />,
+            },
+
+            {
+                path: "/product/:productId",
+                element: <ProductDetail />,
+            },
         ],
-    },
-
-    {
-        path: "/post/:postId",
-        element: <PostDetail />,
-    },
-
-    {
-        path: "/product/:productId",
-        element: <ProductDetail />,
     },
     {
         path: "/signin",

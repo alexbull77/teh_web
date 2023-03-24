@@ -2,11 +2,13 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Nav from "../components/NavBar/NavBar";
+import { SecondNavBar } from "../components/NavBar/SecondNavBar";
 
 export const Root = () => {
     return (
         <>
-            <Nav />
+            {/* <Nav /> */}
+            <SecondNavBar />
             <Outlet />
             <Footer
                 title='Refresh your day with our premium teas'
