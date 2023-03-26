@@ -38,7 +38,7 @@ export const PostCardCustom = observer(({ post }) => {
                     <EditPostDialog post={post} />
                 </div>
                 <div className='cursor-pointer'>
-                    <DeleteConfirmationDialog id={post.id} />
+                    <DeleteConfirmationDialog post={post} />
                 </div>
             </CardActions>
         </Card>

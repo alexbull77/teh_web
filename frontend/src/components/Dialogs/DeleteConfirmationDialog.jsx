@@ -10,7 +10,7 @@ import { observer } from "mobx-react";
 import * as React from "react";
 import { useRootStore } from "../../MST/Stores/RootStore";
 
-export const DeleteConfirmationDialog = observer(({ id }) => {
+export const DeleteConfirmationDialog = observer(({ post }) => {
     const { deletePost } = useRootStore();
 
     const [open, setOpen] = React.useState(false);
@@ -25,7 +25,7 @@ export const DeleteConfirmationDialog = observer(({ id }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        deletePost(id);
+        deletePost(post);
         handleClose();
     };
 
