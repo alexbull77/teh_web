@@ -1,7 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
-import axios from "../axios.js";
 import CustomGridContainer from "../components/CustomGridContainer.jsx";
 import { PostCardCustom } from "../layout/PostCardCustom.jsx";
 import { useRootStore } from "../MST/Stores/RootStore.jsx";
@@ -34,11 +33,7 @@ const Posts = observer(() => {
             ) : (
                 posts.map((post) => (
                     <Grid item xs={12} md={6} lg={3} key={post.id}>
-                        <PostCardCustom
-                            id={post.id}
-                            title={post.title}
-                            body={post.body}
-                        />
+                        <PostCardCustom post={post} />
                     </Grid>
                 ))
             )}

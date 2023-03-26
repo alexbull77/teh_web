@@ -7,36 +7,26 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useRootStore } from "../../MST/Stores/RootStore";
 
-export const EditPostDialog = observer(({ id }) => {
-    // if (!task) return null;
-
+export const EditPostDialog = observer(({ post }) => {
     const [open, setOpen] = useState(false);
-    const { posts } = useRootStore();
-    // temporary var
-    let selectedPost;
-    useEffect(() => {
-        selectedPost = posts.find((task) => task.id === id);
-    }, []);
+    const { editPost } = useRootStore();
 
-    // const [title, setTitle] = useState(task.title)
-    // const [description, setDescription] = useState(task.description)
-
-    // console.log('Title is ' + title)
-    // console.log('DescriptioeditedTaskn is ' + description)
+    const [title, setTitle] = useState(post.title);
+    const [body, setBody] = useState(post.body);
 
     const handleTitleChange = (event) => {
-        // const target = event.target
-        // setTask({ ...editedTask, title: target.value });
+        setTitle(event.target.value);
+        console.log(title);
     };
 
-    const handleDescriptionChange = (event) => {
-        // const target = event.target as HTMLTextAreaElement;
-        // setTask({ ...editedTask, description: target.value });
+    const handleBodyChange = (event) => {
+        setBody(event.target.value);
+        console.log(body);
     };
 
     const handleClickOpen = () => {
@@ -50,16 +40,12 @@ export const EditPostDialog = observer(({ id }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // check if we have changed anything at all
-        // if (
-        //     task.title !== editedTask.title &&
-        //     task.description !== editedTask.description
-        // ) {
-        //     let neededTask = store.getById(task.id);
-        //     neededTask = { ...neededTask, ...task };
-        // } else {
-        //     console.log("Nothing has changed");
-        //     return;
-        // }
+        if (title === post.title && body === post.body) {
+            console.log("Nothing has changed");
+            return;
+        } else {
+            editPost(post.id, title, body);
+        }
         handleClose();
     };
 
@@ -74,16 +60,16 @@ export const EditPostDialog = observer(({ id }) => {
                 <EditIcon />
             </Fab>
             <Dialog fullWidth={true} open={open} onClose={handleClose}>
-                <DialogTitle>Edit Task Form</DialogTitle>
+                <DialogTitle>Edit Post Form</DialogTitle>
                 <DialogContent>
                     <DialogContentText color={"primary"}>
-                        Please rename your task
+                        Please rename your post
                     </DialogContentText>
                     <TextField
                         // somehow doesn't work
                         // didn't find a way to make it work
                         autoFocus={true}
-                        value={""}
+                        value={title}
                         margin='normal'
                         id='title'
                         type='text'
@@ -92,16 +78,17 @@ export const EditPostDialog = observer(({ id }) => {
                         onChange={handleTitleChange}
                     />
                     <DialogContentText color={"primary"}>
-                        Refactor the existing description
+                        Refactor the existing body
                     </DialogContentText>
                     <TextField
+                        id='standard-multiline-static'
                         margin='normal'
-                        id='name'
-                        value={""}
-                        type='text'
                         fullWidth
+                        multiline
+                        rows={10}
+                        value={body}
                         variant='standard'
-                        onChange={handleDescriptionChange}
+                        onChange={handleBodyChange}
                     />
                 </DialogContent>
 

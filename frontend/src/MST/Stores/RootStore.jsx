@@ -9,6 +9,7 @@ const RootStore = types
         products: types.array(ProductsModel),
         posts: types.array(PostModel),
         // selected_product: types.safeReference(ProductsModel),
+        // selectedPost: types.safeReference(PostModel),
     })
 
     .views((self) => ({
@@ -94,11 +95,30 @@ const RootStore = types
                     `https://dummyjson.com/posts/${id}`
                 );
                 console.log(response);
+                // client-side delete when server returns promise fulfilled
+                self.posts = self.posts.filter((post) => post.id !== id);
             } catch (e) {
                 console.log(">>e", e);
             }
-            // client-side delete
-            self.posts = self.posts.filter((post) => post.id !== id);
+        }),
+
+        editPost: flow(function* editPost(id, title, body) {
+            // server side edit
+            try {
+                const response = yield axios.patch(
+                    `https://dummyjson.com/posts/${id}`,
+                    {
+                        title: title,
+                        body: body,
+                    }
+                );
+                // client side edit when server returns promise fulfilled
+                console.log(response);
+                const post = self.posts.find((post) => id === post.id);
+                post.edit(title, body);
+            } catch (e) {
+                console.log(">>e", e);
+            }
         }),
     }));
 

@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import teaImage from "../../static/teaImage.jpg";
+import Meme from "../../static/meme.jpg";
 const Home = () => {
     return (
         <>
@@ -25,8 +25,8 @@ const Home = () => {
                                 gutterBottom
                                 style={{ marginBottom: "1rem" }}
                             >
-                                Discover our range of high-quality teas sourced
-                                from around the world.
+                                Let's discover my shitty design and a varity of
+                                bugs together!
                             </Typography>
                             <Button
                                 variant='contained'
@@ -41,12 +41,13 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <img
-                            src={teaImage}
-                            alt='Tea'
+                            src={Meme}
+                            alt='Meme'
                             style={{
-                                width: "100%",
+                                width: "80%",
                                 height: "auto",
                                 marginBottom: "2rem",
+                                marginRight: "2rem",
                             }}
                         />
                     </Grid>

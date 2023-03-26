@@ -31,9 +31,6 @@ export const DeleteConfirmationDialog = observer(({ id }) => {
 
     return (
         <div>
-            {/* <Button variant='outlined' onClick={handleClickOpen}>
-                Open alert dialog
-            </Button> */}
             <Fab
                 size='small'
                 color='secondary'
@@ -51,13 +48,6 @@ export const DeleteConfirmationDialog = observer(({ id }) => {
                 <DialogTitle id='alert-dialog-title'>
                     {"Do you really want to delete this post?"}
                 </DialogTitle>
-                {/* <DialogContent>
-                    <DialogContentText id='alert-dialog-description'>
-                        Let Google help apps determine location. This means
-                        sending anonymous location data to Google, even when no
-                        apps are running.
-                    </DialogContentText>
-                </DialogContent> */}
                 <DialogActions>
                     <Button onClick={handleClose}>No</Button>
                     <Button onClick={handleSubmit} autoFocus>

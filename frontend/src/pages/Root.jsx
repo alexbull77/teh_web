@@ -11,8 +11,8 @@ export const Root = () => {
             <SecondNavBar />
             <Outlet />
             <Footer
-                title='Refresh your day with our premium teas'
-                description='Experience the finest selection of premium teas from around the world. Our carefully curated collection will delight your senses and invigorate your day. Try our teas today and discover a world of flavor and relaxation.'
+                title='Refresh your day with my web project'
+                description='Experience the finest selection of premium design choices. Our carefully curated collection will delight your senses and invigorate your day. Try our webpages application today and discover a world of joy and relaxation.'
             />
         </>
     );
