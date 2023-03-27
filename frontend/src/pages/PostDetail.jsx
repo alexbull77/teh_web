@@ -1,11 +1,5 @@
-import Chip from "@mui/material/Chip";
-import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
 
@@ -17,7 +11,6 @@ const PostDetail = () => {
         axios
             .get(`https://dummyjson.com/posts/${postId}`)
             .then((res) => setPost(res.data));
-        // console.log("Post Detail>> ", post);
     }, []);
 
     return (
@@ -27,67 +20,27 @@ const PostDetail = () => {
                     <h1>Post is not here</h1>
                 </div>
             ) : (
-                <div style={{ flexGrow: 1 }}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={8}>
-                            <Typography
-                                variant='h3'
-                                component='h1'
-                                gutterBottom
-                            >
-                                {post.title}
-                            </Typography>
-                            {/* <Typography variant='subtitle1' gutterBottom>
-                                By {post.author?.username}
-                            </Typography> */}
-                            <Divider />
-                            {/* <Typography
-                                variant='body1'
-                                gutterBottom
-                                style={{ marginTop: "1rem" }}
-                            >
-                                {post.body}
-                            </Typography> */}
-
-                            {/* <Carousel
-                                showArrows={false}
-                                stopOnHover={true}
-                                autoPlay={true}
-                                showStatus={false}
-                            >
-                                {post.images?.map((image) => {
-                                    return (
-                                        <div key={image.id}>
-                                            <img
-                                                src={image.url}
-                                                alt={image.alt_name}
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </Carousel> */}
-
-                            <Divider
-                                style={{
-                                    marginTop: "1rem",
-                                    marginBottom: "1rem",
-                                }}
-                            />
-                            <Typography variant='body1' gutterBottom>
-                                {post.body}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Paper>
-                                <Typography variant='subtitle1' gutterBottom>
-                                    Tags
-                                </Typography>
-                                {post.tags?.map((tag) => (
-                                    <Chip label={tag} />
-                                ))}
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                <div className='h-screen'>
+                    <div className='mt-7 flex justify-center'>
+                        <h1 className='text-4xl font-bold'>{post.title}</h1>
+                    </div>
+                    <div className='mt-7 ml-10 mr-10'>
+                        <p>{post.body}</p>
+                    </div>
+                    <div className='ml-10 mt-7 text-2xl font-bold'>Tags</div>
+                    <ul className='flex flex-wrap gap-2 mt-3 ml-7'>
+                        {!post.tags ? (
+                            <div>
+                                <h3>No tags</h3>
+                            </div>
+                        ) : (
+                            post.tags.map((tag) => (
+                                <li className='px-3 py-1 bg-gray-100 text-xl rounded-full'>
+                                    {tag}
+                                </li>
+                            ))
+                        )}
+                    </ul>
                 </div>
             )}
         </>

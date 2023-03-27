@@ -31,13 +31,6 @@ const Nav = () => {
                     >
                         <MenuRoundedIcon />
                     </div>
-                    {/* <div
-                    onClick={toggleMenu}
-                    className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'
-                >
-                    <MenuRoundedIcon />
-                    {/* <ion-icon name={open ? "close" : "menu"}></ion-icon> */}
-                    {/* </div> */}
 
                     <ul
                         className={`${

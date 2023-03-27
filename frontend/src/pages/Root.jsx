@@ -7,7 +7,6 @@ import { SecondNavBar } from "../components/NavBar/SecondNavBar";
 export const Root = () => {
     return (
         <>
-            {/* <Nav /> */}
             <SecondNavBar />
             <Outlet />
             <Footer
