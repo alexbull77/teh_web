@@ -62,7 +62,7 @@ export const EditPostDialog = observer(({ post }) => {
             <Dialog fullWidth={true} open={open} onClose={handleClose}>
                 <DialogTitle>Edit Post Form</DialogTitle>
                 <DialogContent>
-                    <DialogContentText color={"primary"}>
+                    <DialogContentText color={"#008080"}>
                         Please rename your post
                     </DialogContentText>
                     <TextField
@@ -77,7 +77,7 @@ export const EditPostDialog = observer(({ post }) => {
                         variant='standard'
                         onChange={handleTitleChange}
                     />
-                    <DialogContentText color={"primary"}>
+                    <DialogContentText color={"#008080"}>
                         Refactor the existing body
                     </DialogContentText>
                     <TextField

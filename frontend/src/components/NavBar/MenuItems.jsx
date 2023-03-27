@@ -11,7 +11,11 @@ export const MenuItems = ({ showMenu, active, Links }) => {
                     : "hidden"
             }
         >
-            <CloseSharpIcon onClick={showMenu} className='cursor-pointer' />
+            <CloseSharpIcon
+                size='large'
+                onClick={showMenu}
+                className='cursor-pointer'
+            />
             {Links.map((link) => (
                 <li key={link.name}>
                     <Link to={link.link}>{link.name}</Link>

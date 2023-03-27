@@ -6,8 +6,6 @@ import { PostCardCustom } from "../layout/PostCardCustom.jsx";
 import { useRootStore } from "../MST/Stores/RootStore.jsx";
 
 const Posts = observer(() => {
-    // const [posts, setPosts] = useState(null);
-
     const { posts, fetchPosts, havePosts } = useRootStore();
 
     useEffect(() => {

@@ -34,7 +34,7 @@ export const PostCardCustom = observer(({ post }) => {
                 <Button size='small' component={Link} to={`/post/${post.id}`}>
                     Learn More
                 </Button>
-                <div className='cursor-pointer'>
+                <div className='cursor-pointer ml-3'>
                     <EditPostDialog post={post} />
                 </div>
                 <div className='cursor-pointer'>

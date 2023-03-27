@@ -21,6 +21,8 @@ export default function ProductCardCustom({
                 image={image}
                 title={"some_alt_name"}
                 sx={{ height: 140, objectFit: "contain" }}
+                component={Link}
+                to={`/product/${id}`}
             />
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>

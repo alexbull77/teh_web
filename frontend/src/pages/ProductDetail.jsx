@@ -13,17 +13,6 @@ const ProductDetail = () => {
     }, []);
 
     return (
-        // <div className='mt=50 place-items-center h-screen'>
-        //     {product ? (
-        //         <div>
-        //             <h1>{product.title}</h1>
-        //             <p>Price: ${product.price}</p>
-        //             <p>{product.description}</p>
-        //         </div>
-        //     ) : (
-        //         <div>Product is not here</div>
-        //     )}
-        // </div>
         <>
             {!product ? (
                 <div>

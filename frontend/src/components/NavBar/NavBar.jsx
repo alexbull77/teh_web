@@ -21,10 +21,9 @@ export const NavBar = () => {
 
     return (
         <nav>
-            {/* <div className='container fixed w-full text-white flex justify-between p-4 items-center'> */}
             <div className='container mx-auto px-6 py-2 flex justify-between items-center'>
                 <div
-                    className='font-bold text-2xl lg:text-4xl uppercase hover:cursor-pointer'
+                    className='font-bold text-2xl lg:text-4xl uppercase hover:cursor-pointer mt-4'
                     onClick={() => {
                         navigate("/home");
                     }}
