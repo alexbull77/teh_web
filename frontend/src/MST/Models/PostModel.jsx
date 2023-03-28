@@ -1,4 +1,4 @@
-import { destroy, flow, types } from "mobx-state-tree";
+import { destroy, flow, getParent, types } from "mobx-state-tree";
 import axios from "../../axios";
 
 export const PostModel = types
@@ -48,8 +48,10 @@ export const PostModel = types
                     `https://dummyjson.com/posts/${self.id}`
                 );
                 console.log(response);
-                // client-side delete when server returns promise fulfilled
-                destroy(self);
+                // need to access the rootstrore, that's why we are goind 2 parents up
+                // and then calling the method of the store
+                // only in case of backend remove is successful
+                getParent(self, 2).removePost(self);
             } catch (e) {
                 console.log(">>e", e);
             }

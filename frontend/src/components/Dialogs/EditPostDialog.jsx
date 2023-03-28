@@ -17,10 +17,10 @@ export const EditPostDialog = observer(({ post }) => {
     const [open, setOpen] = useState(false);
     const [clonedObject, setClonedObject] = useState(clone(post));
 
-    useEffect(() => {
-        const clonedObject = clone(post);
-        console.log(clonedObject);
-    }, []);
+    // useEffect(() => {
+    //     const clonedObject = clone(post);
+    //     console.log(clonedObject);
+    // }, []);
 
     const handleTitleChange = (event) => {
         clonedObject.changeTitle(event.target.value);

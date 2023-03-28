@@ -1,4 +1,10 @@
-import { applySnapshot, flow, toGenerator, types } from "mobx-state-tree";
+import {
+    applySnapshot,
+    destroy,
+    flow,
+    toGenerator,
+    types,
+} from "mobx-state-tree";
 import { createContext, useContext } from "react";
 import axios from "../../axios";
 import { PostModel } from "../Models/PostModel";
@@ -84,6 +90,10 @@ const RootStore = types
                 console.log(">>e", e);
             }
         }),
+
+        removePost(post) {
+            destroy(post);
+        },
     }));
 
 export const store = RootStore.create({});

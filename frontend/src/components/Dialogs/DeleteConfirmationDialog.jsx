@@ -25,7 +25,7 @@ export const DeleteConfirmationDialog = observer(({ post }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        deletePost(post);
+        post.delete();
         handleClose();
     };
 
