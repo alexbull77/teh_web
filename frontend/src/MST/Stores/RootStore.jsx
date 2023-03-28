@@ -94,6 +94,22 @@ const RootStore = types
         removePost(post) {
             destroy(post);
         },
+
+        addPost: flow(function* (post) {
+            try {
+                const response = yield axios.post(
+                    `https://dummyjson.com/posts/`,
+                    {
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(post),
+                    }
+                );
+                console.log(response);
+                self.posts.push(post);
+            } catch (e) {
+                console.log(">>e", e);
+            }
+        }),
     }));
 
 export const store = RootStore.create({});
