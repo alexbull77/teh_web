@@ -13,11 +13,6 @@ import { EditPostDialog } from "../components/Dialogs/EditPostDialog";
 export const PostCardCustom = observer(({ post }) => {
     return (
         <Card sx={{ maxWidth: 345 }}>
-            {/* <CardMedia
-                sx={{ height: 140 }}
-                image={first_image.url}
-                title={first_image.alt_name}
-            /> */}
             <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
                     {post.title}

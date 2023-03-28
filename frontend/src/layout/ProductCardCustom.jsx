@@ -31,9 +31,6 @@ export default function ProductCardCustom({
                 <Typography variant='body2' color='text.secondary'>
                     {description}
                 </Typography>
-                {/* <Typography variant='body2' color='text.secondary'>
-                    
-                </Typography> */}
                 <Box px={1}>
                     <Typography
                         variant='h5'
@@ -42,18 +39,7 @@ export default function ProductCardCustom({
                         gutterBottom={true}
                     >
                         {price + " USD"}
-                        {/* <Typography
-                            variant='h6'
-                            color='textSecondary'
-                            component='span'
-                        >
-                            {" / " + quantity}
-                        </Typography> */}
                     </Typography>
-                    {/* <Typography color="textSecondary" variant="subtitle1" component="p">{content['01_benefit1']}</Typography>
-                    <Typography color="textSecondary" variant="subtitle1" component="p">{content['01_benefit2']}</Typography>
-                    <Typography color="textSecondary" variant="subtitle1" component="p">{content['01_benefit3']}</Typography>
-                    <Typography color="textSecondary" variant="subtitle1" component="p" paragraph={true}>{content['01_benefit4']}</Typography> */}
                 </Box>
             </CardContent>
             <CardActions>

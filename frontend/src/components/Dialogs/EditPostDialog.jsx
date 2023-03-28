@@ -16,17 +16,12 @@ export const EditPostDialog = observer(({ post }) => {
     const [open, setOpen] = useState(false);
     const { editPost } = useRootStore();
 
-    const [title, setTitle] = useState(post.title);
-    const [body, setBody] = useState(post.body);
-
     const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-        console.log(title);
+        post.changeTitle(event.target.value);
     };
 
     const handleBodyChange = (event) => {
-        setBody(event.target.value);
-        console.log(body);
+        post.changeBody(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -39,13 +34,8 @@ export const EditPostDialog = observer(({ post }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // check if we have changed anything at all
-        if (title === post.title && body === post.body) {
-            console.log("Nothing has changed");
-            return;
-        } else {
-            editPost(post.id, title, body);
-        }
+        // client-side edit is already done, so we need to sync the server
+        editPost(post);
         handleClose();
     };
 
@@ -69,7 +59,7 @@ export const EditPostDialog = observer(({ post }) => {
                         // somehow doesn't work
                         // didn't find a way to make it work
                         autoFocus={true}
-                        value={title}
+                        value={post.title}
                         margin='normal'
                         id='title'
                         type='text'
@@ -86,7 +76,7 @@ export const EditPostDialog = observer(({ post }) => {
                         fullWidth
                         multiline
                         rows={10}
-                        value={body}
+                        value={post.body}
                         variant='standard'
                         onChange={handleBodyChange}
                     />

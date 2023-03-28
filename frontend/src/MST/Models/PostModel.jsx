@@ -20,8 +20,10 @@ export const PostModel = types
     // }))
 
     .actions((self) => ({
-        edit(title, body) {
-            self.title = title;
-            self.body = body;
+        changeTitle(newTitle) {
+            self.title = newTitle;
+        },
+        changeBody(newBody) {
+            self.body = newBody;
         },
     }));
