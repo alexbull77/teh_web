@@ -1,10 +1,4 @@
-import {
-    applySnapshot,
-    destroy,
-    flow,
-    toGenerator,
-    types,
-} from "mobx-state-tree";
+import { applySnapshot, flow, toGenerator, types } from "mobx-state-tree";
 import { createContext, useContext } from "react";
 import axios from "../../axios";
 import { PostModel } from "../Models/PostModel";
@@ -86,37 +80,6 @@ const RootStore = types
                 });
 
                 applySnapshot(self.posts, _posts);
-            } catch (e) {
-                console.log(">>e", e);
-            }
-        }),
-
-        deletePost: flow(function* deletePost(post) {
-            // server-side delete
-            try {
-                const response = yield axios.delete(
-                    `https://dummyjson.com/posts/${post.id}`
-                );
-                console.log(response);
-                // client-side delete when server returns promise fulfilled
-                destroy(post);
-                // a better way of deleting a post with mobx
-                // self.posts = self.posts.filter((post) => post.id !== id);
-            } catch (e) {
-                console.log(">>e", e);
-            }
-        }),
-
-        editPost: flow(function* editPost(post) {
-            // server side edit
-            try {
-                const response = yield axios.patch(
-                    `https://dummyjson.com/posts/${post.id}`,
-                    {
-                        post,
-                    }
-                );
-                console.log(response);
             } catch (e) {
                 console.log(">>e", e);
             }

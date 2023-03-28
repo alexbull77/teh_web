@@ -35,7 +35,7 @@ export const EditPostDialog = observer(({ post }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // client-side edit is already done, so we need to sync the server
-        editPost(post);
+        post.edit();
         handleClose();
     };
 
