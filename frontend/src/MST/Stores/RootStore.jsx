@@ -101,6 +101,10 @@ const RootStore = types
                     `https://dummyjson.com/posts/`,
                     {
                         headers: { "Content-Type": "application/json" },
+                        // body: JSON.stringify({
+                        //     ...post,
+                        //     id: parseInt(post.id),
+                        // }),
                         body: JSON.stringify(post),
                     }
                 );
