@@ -50,8 +50,6 @@ export const PostModel = types
                 console.log(response);
                 // client-side delete when server returns promise fulfilled
                 destroy(self);
-                // a better way of deleting a post with mobx
-                // self.posts = self.posts.filter((post) => post.id !== id);
             } catch (e) {
                 console.log(">>e", e);
             }

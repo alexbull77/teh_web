@@ -8,20 +8,26 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
 import { observer } from "mobx-react-lite";
+import { applySnapshot, clone, getSnapshot } from "mobx-state-tree";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useRootStore } from "../../MST/Stores/RootStore";
 
 export const EditPostDialog = observer(({ post }) => {
     const [open, setOpen] = useState(false);
-    const { editPost } = useRootStore();
+    const [clonedObject, setClonedObject] = useState(clone(post));
+
+    useEffect(() => {
+        const clonedObject = clone(post);
+        console.log(clonedObject);
+    }, []);
 
     const handleTitleChange = (event) => {
-        post.changeTitle(event.target.value);
+        clonedObject.changeTitle(event.target.value);
     };
 
     const handleBodyChange = (event) => {
-        post.changeBody(event.target.value);
+        clonedObject.changeBody(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -30,10 +36,12 @@ export const EditPostDialog = observer(({ post }) => {
 
     const handleClose = () => {
         setOpen(false);
+        setClonedObject(post);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        applySnapshot(post, getSnapshot(clonedObject));
         // client-side edit is already done, so we need to sync the server
         post.edit();
         handleClose();
@@ -59,7 +67,7 @@ export const EditPostDialog = observer(({ post }) => {
                         // somehow doesn't work
                         // didn't find a way to make it work
                         autoFocus={true}
-                        value={post.title}
+                        value={clonedObject.title}
                         margin='normal'
                         id='title'
                         type='text'
@@ -76,7 +84,7 @@ export const EditPostDialog = observer(({ post }) => {
                         fullWidth
                         multiline
                         rows={10}
-                        value={post.body}
+                        value={clonedObject.body}
                         variant='standard'
                         onChange={handleBodyChange}
                     />
