@@ -35,8 +35,8 @@ export const EditPostDialog = observer(({ post }) => {
     };
 
     const handleClose = () => {
+        setClonedObject(clone(post));
         setOpen(false);
-        setClonedObject(post);
     };
 
     const handleSubmit = (event) => {
