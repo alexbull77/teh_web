@@ -35,7 +35,7 @@ export default function ProductCardCustom({
                     <Typography
                         variant='h5'
                         align='right'
-                        component='h2'
+                        // component='h2'
                         gutterBottom={true}
                     >
                         {price + " USD"}
