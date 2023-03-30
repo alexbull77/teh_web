@@ -11,7 +11,7 @@ import { observer } from "mobx-react-lite";
 import { applySnapshot, clone, getSnapshot } from "mobx-state-tree";
 import * as React from "react";
 import { useState } from "react";
-import { IPostModel } from "../../MST/Interfaces";
+import { IPostModel } from "../../../mst/Interfaces";
 
 export const EditPostDialog = observer(({ post }: { post: IPostModel }) => {
   const [open, setOpen] = useState(false);

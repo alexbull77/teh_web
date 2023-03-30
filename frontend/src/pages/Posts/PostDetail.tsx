@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
-import { useRootStore } from "../MST/Stores/RootStore.tsx";
+import { useRootStore } from "../../mst/Stores/RootStore.tsx";
 
 export const PostDetail = observer(() => {
   const { postId } = useParams();

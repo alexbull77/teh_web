@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../axios";
+// import axiosInstance from "../../axios";
 
 function Copyright(props) {
   return (
@@ -33,38 +33,38 @@ function Copyright(props) {
 export default function SignIn() {
   const navigate = useNavigate();
   // freezing the obj so it cannot be changed
-  const initialFormData = Object.freeze({
-    email: "",
-    password: "",
-  });
+  // const initialFormData = Object.freeze({
+  //   email: "",
+  //   password: "",
+  // });
 
-  const [formData, updateFormData] = useState(initialFormData);
+  // const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (event) => {
-    updateFormData({
-      ...formData,
-      // Trimming any whitespace
-      [event.target.name]: event.target.value.trim(),
-    });
+    // updateFormData({
+    //   ...formData,
+    //   // Trimming any whitespace
+    //   [event.target.name]: event.target.value.trim(),
+    // });
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData);
-
-    axiosInstance
-      .post("token/", {
-        email: formData.email,
-        password: formData.password,
-      })
-      .then((res) => {
-        localStorage.setItem("access_token", res.data.access);
-        localStorage.setItem("refresh_token", res.data.refresh);
-        axiosInstance.defaults.headers["Authorization"] =
-          "JWT " + localStorage.getItem("access_token");
-        // setIsAuth(true);
-        navigate("/");
-      });
+    // event.preventDefault();
+    // console.log(formData);
+    //
+    // axiosInstance
+    //   .post("token/", {
+    //     email: formData.email,
+    //     password: formData.password,
+    //   })
+    //   .then((res) => {
+    //     localStorage.setItem("access_token", res.data.access);
+    //     localStorage.setItem("refresh_token", res.data.refresh);
+    //     axiosInstance.defaults.headers["Authorization"] =
+    //       "JWT " + localStorage.getItem("access_token");
+    //     // setIsAuth(true);
+    //     navigate("/");
+    //   });
   };
 
   return (

@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import { ContextRootStore, store } from "./MST/Stores/RootStore.js";
-import Home from "./pages/Home.js";
-import NotFound from "./pages/NotFound.js";
-import PostDetail from "./pages/PostDetail.js";
-import Posts from "./pages/Posts.js";
-import ProductDetail from "./pages/ProductDetail.js";
-import Products from "./pages/Products.js";
-import { Root } from "./pages/Root.js";
-import SignIn from "./pages/SignIn.js";
-import SignUp from "./pages/SignUp.js";
+import { ContextRootStore, store } from "./mst/Stores/RootStore.js";
+import Home from "./pages/Home/Home";
+import NotFound from "./pages/404/NotFound";
+import PostDetail from "./pages/Posts/PostDetail";
+import Posts from "./pages/Posts/Posts";
+import ProductDetail from "./pages/Products/ProductDetail";
+import Products from "./pages/Products/Products";
+import { Root } from "./Root";
+import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 
 const router = createBrowserRouter([
   {

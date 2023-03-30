@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import PostCardCustom from "./PostCardCustom.tsx";
+import PostCardCustom from "../pages/Posts/PostCardCustom.tsx";
 
 const GridCustom = ({ posts }) => {
   return (

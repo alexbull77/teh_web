@@ -2,11 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { observer } from "mobx-react";
 import React, { useEffect } from "react";
-import CustomGridContainer from "../components/CustomGridContainer.tsx";
-import { NewPostDialog } from "../components/Dialogs/NewPostDialog.tsx";
-import { PostCardCustom } from "../layout/PostCardCustom.tsx";
-import { useRootStore } from "../MST/Stores/RootStore.tsx";
-import {IPostModel, IPostModelSnapshotOut} from "../MST/Interfaces";
+import CustomGridContainer from "../../components/CustomGridContainer.tsx";
+import { NewPostDialog } from "./Dialogs/NewPostDialog.tsx";
+import { PostCardCustom } from "./PostCardCustom.tsx";
+import { useRootStore } from "../../mst/Stores/RootStore.tsx";
+import {IPostModel, IPostModelSnapshotOut} from "../../mst/Interfaces";
 
 const Posts = observer(() => {
   const { posts, fetchPosts, havePosts } = useRootStore();

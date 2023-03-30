@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../axios";
+// import axiosInstance from "../../axios";
 
 function Copyright(props) {
   return (
@@ -34,38 +34,38 @@ function Copyright(props) {
 export default function SignUp() {
   const navigate = useNavigate();
   // freezing the obj so it cannot be changed
-  const initialFormData = Object.freeze({
-    email: "",
-    username: "",
-    password: "",
-  });
+  // const initialFormData = Object.freeze({
+  //   email: "",
+  //   username: "",
+  //   password: "",
+  // });
 
-  const [formData, updateFormData] = useState(initialFormData);
+  // const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (event) => {
-    updateFormData({
-      ...formData,
-      // Trimming any whitespace
-      [event.target.name]: event.target.value.trim(),
-    });
+    // updateFormData({
+    //   ...formData,
+    //   // Trimming any whitespace
+    //   [event.target.name]: event.target.value.trim(),
+    // });
   };
 
   // !NEED TO DO SOME ERROR CHECKING HERE
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData);
-
-    axiosInstance
-      .post("user/register/", {
-        email: formData.email,
-        user_name: formData.username,
-        password: formData.password,
-      })
-      .then((res) => {
-        navigate("/signin");
-        console.log(res);
-        console.log(res.data);
-      });
+    // event.preventDefault();
+    // console.log(formData);
+    //
+    // axiosInstance
+    //   .post("user/register/", {
+    //     email: formData.email,
+    //     user_name: formData.username,
+    //     password: formData.password,
+    //   })
+    //   .then((res) => {
+    //     navigate("/signin");
+    //     console.log(res);
+    //     console.log(res.data);
+    //   });
   };
 
   return (

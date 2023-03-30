@@ -7,8 +7,8 @@ import { observer } from "mobx-react";
 import * as React from "react";
 
 import { Link } from "react-router-dom";
-import { DeleteConfirmationDialog } from "../components/Dialogs/DeleteConfirmationDialog.js";
-import { EditPostDialog } from "../components/Dialogs/EditPostDialog.js";
+import { DeleteConfirmationDialog } from "./Dialogs/DeleteConfirmationDialog";
+import { EditPostDialog } from "./Dialogs/EditPostDialog";
 
 export const PostCardCustom = observer(({ post }) => {
   return (

@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from "@mui/material/";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/Footer.js";
-import { NavBar } from "../components/NavBar/NavBar.js";
+import Footer from "./components/Footer";
+import { NavBar } from "./components/NavBar/NavBar";
 
 const theme = createTheme({
   palette: {

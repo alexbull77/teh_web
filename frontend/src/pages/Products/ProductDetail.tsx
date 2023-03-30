@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useRootStore } from "../MST/Stores/RootStore.tsx";
+import { useRootStore } from "../../mst/Stores/RootStore.tsx";
 import { observer } from "mobx-react";
 export const ProductDetail = observer(() => {
   const { productId } = useParams();

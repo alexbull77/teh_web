@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import Meme from "../../static/meme.jpg";
+import Meme from "../../../static/meme.jpg";
 const Home = () => {
     return (
         <>

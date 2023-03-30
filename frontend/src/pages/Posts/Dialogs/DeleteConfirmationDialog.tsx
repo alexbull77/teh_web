@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import { observer } from "mobx-react";
 import * as React from "react";
-import { IPostModel } from "../../MST/Interfaces";
+import { IPostModel } from "../../../mst/Interfaces";
 
 export const DeleteConfirmationDialog = observer(({ post }: IPostModel) => {
   const [open, setOpen] = React.useState(false);

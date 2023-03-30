@@ -6,7 +6,7 @@ import {
   types,
 } from "mobx-state-tree";
 import { createContext, useContext } from "react";
-import axios from "../../axios";
+import axios from "axios";
 import { PostModel } from "../Models/PostModel.js";
 import { ProductsModel } from "../Models/ProductModel.js";
 import {
@@ -14,7 +14,7 @@ import {
   IPostModelSnapshotIn,
   IProductModel,
   IProductModelSnapshotIn,
-  IRootStore, IRootStoreSnapshotIn,
+  IRootStore,
 } from "../Interfaces";
 
 export const RootStore = types

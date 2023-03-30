@@ -1,5 +1,5 @@
 import { flow, getParent, types } from "mobx-state-tree";
-import axios from "../../axios";
+import axios from "axios";
 import {IPostModel} from "../Interfaces";
 
 export const PostModel = types

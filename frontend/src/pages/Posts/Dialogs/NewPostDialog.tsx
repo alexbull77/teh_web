@@ -12,8 +12,8 @@ import { observer } from "mobx-react-lite";
 import { applySnapshot, clone, getSnapshot } from "mobx-state-tree";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { PostModel } from "../../MST/Models/PostModel";
-import { useRootStore } from "../../MST/Stores/RootStore";
+import { PostModel } from "../../../mst/Models/PostModel";
+import { useRootStore } from "../../../mst/Stores/RootStore";
 
 export const NewPostDialog = observer(() => {
     const { addPost } = useRootStore();

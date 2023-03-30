@@ -2,9 +2,9 @@ import { Box, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { observer } from "mobx-react";
 import React, { useEffect } from "react";
-import CustomGridContainer from "../components/CustomGridContainer.tsx";
-import ProductCardCustom from "../layout/ProductCardCustom.tsx";
-import { useRootStore } from "../MST/Stores/RootStore.tsx";
+import CustomGridContainer from "../../components/CustomGridContainer.tsx";
+import ProductCardCustom from "./ProductCardCustom.tsx";
+import { useRootStore } from "../../mst/Stores/RootStore.tsx";
 
 const Products = observer(() => {
   const { products, fetchProducts, haveProducts } = useRootStore();
