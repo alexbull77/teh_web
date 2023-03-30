@@ -8,8 +8,10 @@ import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import {useRootStore} from "../../mst/Stores/RootStore";
+import {UserModel} from "../../mst/Models/UserModel";
 // import axiosInstance from "../../axios";
 
 function Copyright(props) {
@@ -31,16 +33,26 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+  const { fetchUsers, saveUserToStorage} = useRootStore();
   const navigate = useNavigate();
+  const [newUser, setNewUser] = useState(UserModel.create({}))
   // freezing the obj so it cannot be changed
   // const initialFormData = Object.freeze({
   //   email: "",
   //   password: "",
   // });
 
+  useEffect(() => {
+    fetchUsers();
+  }, [])
+
   // const [formData, updateFormData] = useState(initialFormData);
 
-  const handleChange = (event) => {
+  const handleUsernameChange = (event) => {
+    newUser.changeUsername(event.target.value);
+    console.log(newUser.username);
+
+
     // updateFormData({
     //   ...formData,
     //   // Trimming any whitespace
@@ -48,8 +60,21 @@ export default function SignIn() {
     // });
   };
 
+  const handlePasswordChange = (event) => {
+    newUser.changePassword(event.target.value);
+    console.log(newUser.password)
+  }
+
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
+    if (saveUserToStorage(newUser)) {
+      alert('User saved on storage')
+      navigate("/products");
+    } else {
+      alert('User not found in registered users!')
+      navigate('/signup');
+    }
+
     // console.log(formData);
     //
     // axiosInstance
@@ -93,7 +118,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={handleChange}
+            onChange={handleUsernameChange}
           />
           <TextField
             margin="normal"
@@ -104,7 +129,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={handleChange}
+            onChange={handlePasswordChange}
           />
           <Button
             type="submit"
