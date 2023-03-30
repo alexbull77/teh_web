@@ -2,11 +2,13 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuItems } from "./MenuItems.js";
+import {observer} from "mobx-react";
+import {useRootStore} from "../../mst/Stores/RootStore";
 
-export const NavBar = () => {
+export const NavBar = observer(() => {
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
-
+  const { currentUser } = useRootStore()
   const showMenu = () => {
     setActive(!active);
   };
@@ -15,9 +17,13 @@ export const NavBar = () => {
     { name: "Home", link: "/home" },
     { name: "Posts", link: "/posts" },
     { name: "Products", link: "/products" },
-    { name: "SignIn", link: "/signin" },
-    { name: "SignUp", link: "/signup" },
   ];
+
+  if (currentUser === undefined) {
+    Links.push({name: "SignIn", link: "/signin"})
+  } else {
+    Links.push({name: "SignOut", link: "/signout"})
+  }
 
   return (
     <nav>
@@ -51,4 +57,4 @@ export const NavBar = () => {
       </div>
     </nav>
   );
-};
+});

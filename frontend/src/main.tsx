@@ -12,6 +12,7 @@ import Products from "./pages/Products/Products";
 import { Root } from "./Root";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
+import SignOut from "./pages/Auth/SignOut";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/signout",
+    element: <SignOut />,
   },
   {
     path: "*",
