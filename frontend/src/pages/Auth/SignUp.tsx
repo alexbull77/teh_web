@@ -34,7 +34,7 @@ function Copyright(props) {
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { fetchUsers, haveUsers, userIsRegistered, registerUser} = useRootStore();
+  const { currentUser, fetchUsers, haveUsers, userIsRegistered, registerUser} = useRootStore();
   const [newUser, setNewUser] = useState(UserModel.create({}))
 
   useEffect(() => {
@@ -54,13 +54,19 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (userIsRegistered(newUser)) {
-      alert('User with this username and password already exists, please Sign In');
-      navigate('/signin');
+
+    if (currentUser === undefined) {
+      if (userIsRegistered(newUser)) {
+        alert('User with this username and password already exists, please Sign In');
+        navigate('/signin');
+      } else {
+        registerUser(newUser);
+        alert('New User Created! Please login')
+        navigate('/signin');
+      }
     } else {
-      registerUser(newUser);
-      alert('New User Created! Please login')
-      navigate('/signin');
+      alert ('You are already logged in')
+      navigate('/products')
     }
   }
 

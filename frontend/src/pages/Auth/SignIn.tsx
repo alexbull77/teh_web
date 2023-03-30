@@ -32,7 +32,7 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
-  const { fetchUsers, saveUserToStorage, haveUsers} = useRootStore();
+  const { currentUser, fetchUsers, setCurrentUser, haveUsers} = useRootStore();
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState(UserModel.create({}))
 
@@ -53,12 +53,17 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (saveUserToStorage(newUser)) {
-      alert('User saved on storage')
-      navigate("/products");
+    if (currentUser === undefined) {
+      if (setCurrentUser(newUser)) {
+        alert('User saved as current');
+        navigate("/products");
+      } else {
+        alert('User not found in registered users! Please Sign Up')
+        navigate('/signup');
+      }
     } else {
-      alert('User not found in registered users!')
-      navigate('/signup');
+      alert ('You are already logged in')
+      navigate('/products')
     }
   }
 

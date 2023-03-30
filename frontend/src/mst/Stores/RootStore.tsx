@@ -25,6 +25,7 @@ export const RootStore = types
         selectedPost: types.safeReference(PostModel),
         selectedProduct: types.safeReference(ProductsModel),
         registeredUsers: types.array<IUserModel>(UserModel),
+        currentUser: types.safeReference(UserModel)
     })
 
     .views((self: IRootStore) => ({
@@ -70,6 +71,10 @@ export const RootStore = types
 
         resetSelectedPost() {
             self.selectedPost = undefined;
+        },
+
+        resetCurrentUser() {
+            self.currentUser = undefined;
         },
 
         selectPostById(id) {
@@ -170,10 +175,11 @@ export const RootStore = types
             }
         }),
 
-        saveUserToStorage(newUser: IPostModel) {
+        setCurrentUser(newUser: IPostModel) {
             const user : IUserModel | undefined = self.findUserByUsernameAndPassword(newUser);
             if (user) {
-                localStorage.setItem(user.id, JSON.stringify(user));
+                // localStorage.setItem(user.id, JSON.stringify(user));
+                self.currentUser = user;
                 return true;
             } else {return false }
         },
