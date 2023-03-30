@@ -9,15 +9,23 @@ import { createContext, useContext } from "react";
 import axios from "../../axios";
 import { PostModel } from "../Models/PostModel.js";
 import { ProductsModel } from "../Models/ProductModel.js";
-import { IPostModel, IProductModel } from "../Interfaces";
+import {
+  IPostModel,
+  IPostModelSnapshotIn,
+  IProductModel,
+  IProductModelSnapshotIn,
+  IRootStore, IRootStoreSnapshotIn,
+} from "../Interfaces";
 
 export const RootStore = types
   .model("RootStore", {
-    products: types.optional(types.array(ProductsModel), []),
-    posts: types.optional(types.array(PostModel), []),
+    products: types.array<IProductModel>(ProductsModel),
+    posts: types.array<IPostModel>(PostModel),
+    selectedPost: types.safeReference(PostModel),
+    selectedProduct: types.safeReference(ProductsModel),
   })
 
-  .views((self) => ({
+  .views((self : IRootStore) => ({
     get haveProducts() {
       return !!self.products.length;
     },
@@ -27,27 +35,37 @@ export const RootStore = types
     },
 
     findPostById(id: string) {
-      return self.posts.find((post) => post.id === id);
+      return self.posts.find((post: IPostModel) => post.id === id);
     },
 
     findProductById(id: string) {
-      return self.products.find((product) => product.id === id);
+      return self.products.find((product: IProductModel) => product.id === id);
     },
   }))
 
-  .actions((self) => ({
-    // resetSelectedProduct() {
-    //   self.selected_product = undefined;
-    // },
-    //
-    // selectProductById(id) {
-    //   self.selected_product = self.products.find(
-    //     (product) => product.id === id
-    //   );
-    // },
+  .actions((self : IRootStore) => ({
+    resetSelectedProduct() {
+      self.selectedProduct = undefined;
+    },
+
+    selectProductById(id) {
+      self.selectedProduct = self.products.find(
+        (product: IProductModel) => product.id === id
+      );
+    },
+
+    resetSelectedPost() {
+      self.selectedPost = undefined;
+    },
+
+    selectPostById(id) {
+      self.selectedPost = self.posts.find(
+          (post: IPostModel) => post.id === id
+      );
+    },
 
     removeProductById(id: string) {
-      const _products = self.products.filter((product) => product.id !== id);
+      const _products = self.products.filter((product: IProductModel) => product.id !== id);
       applySnapshot(self.products, _products);
     },
 
@@ -59,7 +77,7 @@ export const RootStore = types
             .then((response) => response.data.products)
         );
 
-        const _products = products.map((product: IProductModel) => {
+        const _products : IProductModelSnapshotIn[] = products.map((product) => {
           return {
             id: String(product.id),
             title: product.title,
@@ -84,7 +102,7 @@ export const RootStore = types
             .then((response) => response.data.posts)
         );
 
-        const _posts = posts.map((post: IPostModel) => {
+        const _posts = posts.map((post: IPostModelSnapshotIn) => {
           return {
             id: String(post.id),
             title: post.title,
@@ -103,14 +121,10 @@ export const RootStore = types
       destroy(post);
     },
 
-    addPost: flow(function* (post) {
+    addPost: flow(function* (post: IPostModel) {
       try {
         const response = yield axios.post(`https://dummyjson.com/posts/`, {
           headers: { "Content-Type": "application/json" },
-          // body: JSON.stringify({
-          //     ...post,
-          //     id: parseInt(post.id),
-          // }),
           body: JSON.stringify(post),
         });
         console.log(response);

@@ -6,12 +6,14 @@ import CustomGridContainer from "../components/CustomGridContainer.tsx";
 import { NewPostDialog } from "../components/Dialogs/NewPostDialog.tsx";
 import { PostCardCustom } from "../layout/PostCardCustom.tsx";
 import { useRootStore } from "../MST/Stores/RootStore.tsx";
+import {IPostModel, IPostModelSnapshotOut} from "../MST/Interfaces";
 
 const Posts = observer(() => {
   const { posts, fetchPosts, havePosts } = useRootStore();
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts().then(() => {
+        console.log('Successful fetching posts')});
   }, []);
 
   return (

@@ -1,14 +1,15 @@
-import { destroy, flow, getParent, types } from "mobx-state-tree";
+import { flow, getParent, types } from "mobx-state-tree";
 import axios from "../../axios";
+import {IPostModel} from "../Interfaces";
 
 export const PostModel = types
   .model("PostModel", {
-    id: String(Date.now()),
+    id: types.optional(types.identifier, String(Date.now())),
     title: "",
     body: "",
     tags: types.array(types.string),
   })
-  .actions((self) => ({
+  .actions((self : IPostModel) => ({
     changeTitle(newTitle: string) {
       self.title = newTitle;
     },

@@ -24,7 +24,7 @@ export default function NotFound() {
                         </Typography>
                         <Button
                             variant='contained'
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate("/home")}
                         >
                             Back Home
                         </Button>
