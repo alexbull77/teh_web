@@ -9,9 +9,10 @@ import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-// import axiosInstance from "../../axios";
+import {UserModel} from "../../mst/Models/UserModel";
+import {useRootStore} from "../../mst/Stores/RootStore";
 
 function Copyright(props) {
   return (
@@ -33,40 +34,35 @@ function Copyright(props) {
 
 export default function SignUp() {
   const navigate = useNavigate();
-  // freezing the obj so it cannot be changed
-  // const initialFormData = Object.freeze({
-  //   email: "",
-  //   username: "",
-  //   password: "",
-  // });
+  const { fetchUsers, haveUsers, userIsRegistered, registerUser} = useRootStore();
+  const [newUser, setNewUser] = useState(UserModel.create({}))
 
-  // const [formData, updateFormData] = useState(initialFormData);
+  useEffect(() => {
+    if (!haveUsers) fetchUsers();
+    console.log('fetch users')
+  }, [])
 
-  const handleChange = (event) => {
-    // updateFormData({
-    //   ...formData,
-    //   // Trimming any whitespace
-    //   [event.target.name]: event.target.value.trim(),
-    // });
+  const handleUsernameChange = (event) => {
+    newUser.changeUsername(event.target.value);
+    console.log(newUser.username);
   };
 
-  // !NEED TO DO SOME ERROR CHECKING HERE
+  const handlePasswordChange = (event) => {
+    newUser.changePassword(event.target.value);
+    console.log(newUser.password)
+  }
+
   const handleSubmit = (event) => {
-    // event.preventDefault();
-    // console.log(formData);
-    //
-    // axiosInstance
-    //   .post("user/register/", {
-    //     email: formData.email,
-    //     user_name: formData.username,
-    //     password: formData.password,
-    //   })
-    //   .then((res) => {
-    //     navigate("/signin");
-    //     console.log(res);
-    //     console.log(res.data);
-    //   });
-  };
+    event.preventDefault();
+    if (userIsRegistered(newUser)) {
+      alert('User with this username and password already exists, please Sign In');
+      navigate('/signin');
+    } else {
+      registerUser(newUser);
+      alert('New User Created! Please login')
+      navigate('/signin');
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -90,23 +86,11 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
                 id="username"
                 label="Username"
                 name="username"
                 autoComplete="username"
-                onChange={handleChange}
+                onChange={handleUsernameChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -119,7 +103,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={handleChange}
+                onChange={handlePasswordChange}
               />
             </Grid>
           </Grid>

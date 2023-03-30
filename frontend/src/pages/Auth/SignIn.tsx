@@ -12,7 +12,6 @@ import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import {useRootStore} from "../../mst/Stores/RootStore";
 import {UserModel} from "../../mst/Models/UserModel";
-// import axiosInstance from "../../axios";
 
 function Copyright(props) {
   return (
@@ -33,31 +32,18 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
-  const { fetchUsers, saveUserToStorage} = useRootStore();
+  const { fetchUsers, saveUserToStorage, haveUsers} = useRootStore();
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState(UserModel.create({}))
-  // freezing the obj so it cannot be changed
-  // const initialFormData = Object.freeze({
-  //   email: "",
-  //   password: "",
-  // });
 
   useEffect(() => {
-    fetchUsers();
+    if (!haveUsers) fetchUsers();
+    console.log('fetch users')
   }, [])
-
-  // const [formData, updateFormData] = useState(initialFormData);
 
   const handleUsernameChange = (event) => {
     newUser.changeUsername(event.target.value);
     console.log(newUser.username);
-
-
-    // updateFormData({
-    //   ...formData,
-    //   // Trimming any whitespace
-    //   [event.target.name]: event.target.value.trim(),
-    // });
   };
 
   const handlePasswordChange = (event) => {
@@ -74,23 +60,7 @@ export default function SignIn() {
       alert('User not found in registered users!')
       navigate('/signup');
     }
-
-    // console.log(formData);
-    //
-    // axiosInstance
-    //   .post("token/", {
-    //     email: formData.email,
-    //     password: formData.password,
-    //   })
-    //   .then((res) => {
-    //     localStorage.setItem("access_token", res.data.access);
-    //     localStorage.setItem("refresh_token", res.data.refresh);
-    //     axiosInstance.defaults.headers["Authorization"] =
-    //       "JWT " + localStorage.getItem("access_token");
-    //     // setIsAuth(true);
-    //     navigate("/");
-    //   });
-  };
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -113,10 +83,10 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             onChange={handleUsernameChange}
           />

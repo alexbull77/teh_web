@@ -36,6 +36,10 @@ export const RootStore = types
             return !!self.posts.length;
         },
 
+        get haveUsers() {
+            return !!self.registeredUsers.length;
+        },
+
         findPostById(id: string) {
             return self.posts.find((post: IPostModel) => post.id === id);
         },
@@ -46,6 +50,10 @@ export const RootStore = types
 
         findUserByUsernameAndPassword({ username, password}) {
             return self.registeredUsers.find((user: IUserModel) => user.username === username && user.password === password);
+        },
+
+        userIsRegistered(user: IUserModel) {
+            return !!self.findUserByUsernameAndPassword(user);
         }
     }))
 
@@ -168,7 +176,20 @@ export const RootStore = types
                 localStorage.setItem(user.id, JSON.stringify(user));
                 return true;
             } else {return false }
-        }
+        },
+
+        registerUser: flow(function*(newUser: IPostModel) {
+            try {
+                const response = yield axios.post(`https://dummyjson.com/users/`, {
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(newUser),
+                });
+                console.log(response);
+                self.registeredUsers.push(newUser);
+            } catch (e) {
+                console.log(">>e", e);
+            }
+        })
     }));
 
 export const store = RootStore.create({});
