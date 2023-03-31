@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
-import { useRootStore } from "../../mst/Stores/RootStore.tsx";
+import { useRootStore } from "../../mst/Stores/RootStore";
 
 export const PostDetail = observer(() => {
   const { postId } = useParams();
   const { selectedPost, selectPostById, resetSelectedPost } = useRootStore();
 
-  if (postId === undefined) {return null}
+  if (postId === undefined) {
+    return null;
+  }
 
   useEffect(() => {
-    selectPostById(postId)
-    return (() => {
-      resetSelectedPost()
-    })
+    selectPostById(postId);
+    return () => {
+      resetSelectedPost();
+    };
   }, []);
 
   return (
@@ -38,7 +39,7 @@ export const PostDetail = observer(() => {
                 <h3>No tags</h3>
               </div>
             ) : (
-              selectedPost.tags.map((tag) => (
+              selectedPost.tags.map((tag: string) => (
                 <li className="px-3 py-1 bg-gray-100 text-xl rounded-full">
                   {tag}
                 </li>

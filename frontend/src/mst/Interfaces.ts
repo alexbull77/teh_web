@@ -2,7 +2,7 @@ import { RootStore } from "./Stores/RootStore";
 import { Instance, SnapshotIn, SnapshotOut } from "mobx-state-tree";
 import { ProductsModel } from "./Models/ProductModel";
 import { PostModel } from "./Models/PostModel";
-import {UserModel} from "./Models/UserModel";
+import { UserModel } from "./Models/UserModel";
 
 export interface IRootStore extends Instance<typeof RootStore> {}
 export interface IRootStoreSnapshotIn extends SnapshotIn<typeof RootStore> {}

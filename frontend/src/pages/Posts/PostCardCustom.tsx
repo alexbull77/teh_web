@@ -9,29 +9,36 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { DeleteConfirmationDialog } from "./Dialogs/DeleteConfirmationDialog";
 import { EditPostDialog } from "./Dialogs/EditPostDialog";
+import { IPostModelSnapshotOut } from "../../mst/Interfaces";
 
-export const PostCardCustom = observer(({ post }) => {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {post.title}
-        </Typography>
-        <Typography component={"span"} variant={"body2"} color="text.secondary">
-          {post.body}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" component={Link} to={`/post/${post.id}`}>
-          Learn More
-        </Button>
-        <div className="cursor-pointer ml-3">
-          <EditPostDialog post={post} />
-        </div>
-        <div className="cursor-pointer">
-          <DeleteConfirmationDialog post={post} />
-        </div>
-      </CardActions>
-    </Card>
-  );
-});
+export const PostCardCustom = observer(
+  ({ post }: { post: IPostModelSnapshotOut }) => {
+    return (
+      <Card sx={{ maxWidth: 345 }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {post.title}
+          </Typography>
+          <Typography
+            component={"span"}
+            variant={"body2"}
+            color="text.secondary"
+          >
+            {post.body}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" component={Link} to={`/post/${post.id}`}>
+            Learn More
+          </Button>
+          <div className="cursor-pointer ml-3">
+            <EditPostDialog post={post} />
+          </div>
+          <div className="cursor-pointer">
+            <DeleteConfirmationDialog post={post} />
+          </div>
+        </CardActions>
+      </Card>
+    );
+  }
+);

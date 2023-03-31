@@ -9,22 +9,23 @@ import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {UserModel} from "../../mst/Models/UserModel";
-import {useRootStore} from "../../mst/Stores/RootStore";
+import { UserModel } from "../../mst/Models/UserModel";
+import { useRootStore } from "../../mst/Stores/RootStore";
+import { IUserModelSnapshotOut } from "../../mst/Interfaces";
 
-function Copyright(props) {
+function Copyright() {
   return (
     <Typography
       variant="body2"
       color="text.secondary"
       align="center"
-      {...props}
+      sx={{ mt: 5 }}
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        My Shitty Website
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -34,13 +35,14 @@ function Copyright(props) {
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { currentUser, fetchUsers, haveUsers, userIsRegistered, registerUser} = useRootStore();
-  const [newUser, setNewUser] = useState(UserModel.create({}))
+  const { currentUser, fetchUsers, haveUsers, userIsRegistered, registerUser } =
+    useRootStore();
+  const newUser: IUserModelSnapshotOut = UserModel.create({});
 
   useEffect(() => {
     if (!haveUsers) fetchUsers();
-    console.log('fetch users')
-  }, [])
+    console.log("fetch users");
+  }, []);
 
   const handleUsernameChange = (event) => {
     newUser.changeUsername(event.target.value);
@@ -49,26 +51,28 @@ export default function SignUp() {
 
   const handlePasswordChange = (event) => {
     newUser.changePassword(event.target.value);
-    console.log(newUser.password)
-  }
+    console.log(newUser.password);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (currentUser === undefined) {
       if (userIsRegistered(newUser)) {
-        alert('User with this username and password already exists, please Sign In');
-        navigate('/signin');
+        alert(
+          "User with this username and password already exists, please Sign In"
+        );
+        navigate("/signin");
       } else {
         registerUser(newUser);
-        alert('New User Created! Please login')
-        navigate('/signin');
+        alert("New User Created! Please login");
+        navigate("/signin");
       }
     } else {
-      alert ('You are already logged in')
-      navigate('/products')
+      alert("You are already logged in");
+      navigate("/products");
     }
-  }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -136,7 +140,7 @@ export default function SignUp() {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
+      <Copyright />
     </Container>
   );
 }

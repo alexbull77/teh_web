@@ -1,15 +1,16 @@
-import { flow, getParent, types } from "mobx-state-tree";
+import { cast, flow, getParent, types } from "mobx-state-tree";
 import axios from "axios";
-import {IPostModel} from "../Interfaces";
+import { IPostModel } from "../Interfaces";
+import { v4 as uuidv4 } from "uuid";
 
-export const PostModel = types
+export const PostModel: IPostModel = types
   .model("PostModel", {
-    id: types.optional(types.identifier, String(Date.now())),
+    id: types.optional(types.identifier, () => uuidv4()),
     title: "",
     body: "",
     tags: types.array(types.string),
   })
-  .actions((self : IPostModel) => ({
+  .actions((self) => ({
     changeTitle(newTitle: string) {
       self.title = newTitle;
     },
@@ -41,7 +42,7 @@ export const PostModel = types
         // need to access the root store, that's why we are going 2 parents up
         // and then calling the method of the store
         // only in case of backend remove is successful
-        getParent(self, 2).removePost(self);
+        getParent(self, 2).removePost(cast(self));
       } catch (e) {
         console.log(">>e", e);
       }

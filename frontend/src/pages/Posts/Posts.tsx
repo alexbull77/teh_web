@@ -2,18 +2,19 @@ import { Box, Grid, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { observer } from "mobx-react";
 import React, { useEffect } from "react";
-import CustomGridContainer from "../../components/CustomGridContainer.tsx";
-import { NewPostDialog } from "./Dialogs/NewPostDialog.tsx";
-import { PostCardCustom } from "./PostCardCustom.tsx";
-import { useRootStore } from "../../mst/Stores/RootStore.tsx";
-import {IPostModel, IPostModelSnapshotOut} from "../../mst/Interfaces";
+import CustomGridContainer from "../../components/CustomGridContainer";
+import { NewPostDialog } from "./Dialogs/NewPostDialog";
+import { PostCardCustom } from "./PostCardCustom";
+import { useRootStore } from "../../mst/Stores/RootStore";
+import { IPostModel, IPostModelSnapshotOut } from "../../mst/Interfaces";
 
 const Posts = observer(() => {
   const { posts, fetchPosts, havePosts } = useRootStore();
 
   useEffect(() => {
     fetchPosts().then(() => {
-        console.log('Successful fetching posts')});
+      console.log("Successful fetching posts");
+    });
   }, []);
 
   return (
@@ -39,7 +40,7 @@ const Posts = observer(() => {
             </Typography>
           </Box>
         ) : (
-          posts.map((post) => (
+          posts.map((post: IPostModelSnapshotOut) => (
             <Grid item xs={12} md={6} lg={3} key={post.id}>
               <PostCardCustom post={post} />
             </Grid>
